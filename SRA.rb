@@ -1,5 +1,6 @@
 require "sinatra/activerecord"
 
+
 user = current_user
 get '/users/households' do
     households = Household.all
@@ -79,10 +80,11 @@ delete '/areas/users/:id/households/:household_id' do
     household = user.housholds.where(id: :household_id)
     household.save    
 end
-delete '/area/users/household/:id' do
+delete '/areas/users/household/:id' do
     household = Household.find(:id)
     household.delete
 end
+
 
     
     
