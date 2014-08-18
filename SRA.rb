@@ -1,8 +1,8 @@
 require "sinatra/activerecord"
 
 
-Class Application < Sinatra::Base
-register Sinatra::Warden
+
+
 
 get '/admin' do
     authorize!('/login') # require session, redirect to '/login' instead of work
