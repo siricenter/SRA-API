@@ -1,7 +1,21 @@
 require "sinatra/activerecord"
 
 
-user = current_user
+Class Application < Sinatra::Base
+register Sinatra::Warden
+
+get '/admin' do
+    authorize!('/login') # require session, redirect to '/login' instead of work
+    households = Household.all
+    users = Users.all
+    areas = Area.all
+  end
+ get '/dashboard' do
+    authorize! # require a session for this action
+    haml :dashboard
+  end
+
+
 get '/users/households' do
     households = Household.all
     user.households.to_json

@@ -3,5 +3,4 @@ gem 'sinatra'
 gem "sinatra-activerecord"
 gem "pg"
 gem "rake"
-gem 'data-mapper'
-gem 'dm-sqlite-adapter'
+
