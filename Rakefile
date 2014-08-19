@@ -1,2 +1,2 @@
 require "sinatra/activerecord/rake"
-require "./SRA"
+require "./SRA.rb"

@@ -14,16 +14,29 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.6)
     arel (5.0.1.20140414130214)
     builder (3.2.2)
+    dm-core (1.2.1)
+      addressable (~> 2.3)
+    dm-migrations (1.2.0)
+      dm-core (~> 1.2.0)
+    dm-timestamps (1.2.0)
+      dm-core (~> 1.2.0)
+    dm-validations (1.2.0)
+      dm-core (~> 1.2.0)
     i18n (0.6.11)
     json (1.8.1)
     minitest (5.4.0)
+    mysql2 (0.3.16)
     pg (0.17.1)
     rack (1.5.2)
+    rack-flash (0.1.2)
+      rack
     rack-protection (1.5.3)
       rack
     rake (10.3.2)
+    rufus-tokyo (1.0.7)
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -31,16 +44,30 @@ GEM
     sinatra-activerecord (2.0.2)
       activerecord (>= 3.2)
       sinatra (~> 1.0)
+    sinatra-authentication (0.4.1)
+      dm-core
+      dm-migrations
+      dm-timestamps
+      dm-validations
+      rack-flash
+      rufus-tokyo
+      sinatra
+      sinbook
+    sinbook (0.1.9)
+      yajl-ruby
     thread_safe (0.3.4)
     tilt (1.4.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    yajl-ruby (1.2.1)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  mysql2
   pg
   rake
   sinatra
   sinatra-activerecord
+  sinatra-authentication

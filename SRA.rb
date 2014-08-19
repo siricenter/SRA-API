@@ -1,8 +1,10 @@
 require "sinatra/activerecord"
+require 'sinatra'
+require 'warden'
 
 
-
-
+Class SRA-API < Sinatra::Application
+	use Rack::Session::Cookie
 
 get '/admin' do
     authorize!('/login') # require session, redirect to '/login' instead of work
@@ -10,7 +12,7 @@ get '/admin' do
     users = Users.all
     areas = Area.all
   end
- get '/dashboard' do
+get '/dashboard' do
     authorize! # require a session for this action
     haml :dashboard
   end
@@ -99,8 +101,72 @@ delete '/areas/users/household/:id' do
     household.delete
 end
 
+get "/login" do
+	erb '/login'.to_sym
+end
+ 
+post "/session" do
+	warden_handler.authenticate!
+    if warden_handler.authenticated?
+      redirect "/users/#{warden_handler.user.id}" 
+    else
+      redirect "/"
+    end
+end
+ 
+get "/logout" do
+    warden_handler.logout
+    redirect '/login'
+end
+ 
+  post "/unauthenticated" do
+    redirect "/"
+  end
 
+#get "/protected_page" do
+#    check_authentication
+#    erb 'admin_only_page'.to_sym
+#end
+
+use Warden::Manager do |manager|
+  manager.default_strategies :password
+  manager.failure_app = SRA.rb
+  manager.serialize_into_session {|user| user.id}
+  manager.serialize_from_session {|id| Datastore.for(:user).find_by_id(id)}
+end
+ 
+Warden::Manager.before_failure do |env,opts|
+  env['REQUEST_METHOD'] = 'POST'
+end
+
+Warden::Strategies.add(:password) do
+  def valid?
+    params["email"] || params["password"]
+  end
+ 
+  def authenticate!
+    user = Datastore.for(:user).find_by_email(params["email"])
+    if user && user.authenticate(params["password"])
+      success!(user)
+    else
+      fail!("Could not log in")
+    end
+  end
+end
+
+def warden_handler
+    env['warden']
+end
     
+def current_user
+    warden_handler.user
+end
+    
+def check_authentication
+    redirect '/login' unless warden_handler.authenticated?
+end
+    
+
     
     
     
