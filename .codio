@@ -3,7 +3,8 @@
 
 // Run button configuration
   "commands": {
-        "Node version": "node --version"
+        "Build Server": "./setup_codio.rb",
+	    "Run RSpec": "rake db:test:prepare; rake spec"
   },
 
 // Preview button configuration
