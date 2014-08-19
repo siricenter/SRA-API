@@ -9,6 +9,8 @@ require 'login'
 
 Class API < Sinatra::Application
 	use Rack::Session::Cookie
-
-
+include 'GetInfo'
+inlcude 'UpdateInfo'
+include 'DeleteInfo'
+include 'PostInfo'
 end
