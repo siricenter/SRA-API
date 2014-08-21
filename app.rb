@@ -1,7 +1,7 @@
 require 'sinatra'
 set :database_file, "./config/database.yml"
 require 'sinatra/activerecord'
-require './get'
+#require './get'
 #require './post'
 #require './delete'
 #require './put'
@@ -62,6 +62,11 @@ class API < Sinatra::Base
 		user = User.find(:id)
 		user.roles.to_json
 	end
+    
+    get '/areas' do 
+        areas = Area.all
+        areas.to_json
+    end
 
 	put '/areas/:id/households' do
 		household = Household.find(params[:id])

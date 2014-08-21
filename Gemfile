@@ -10,4 +10,6 @@ group :development, :test do
 end			
 gem 'warden'
 gem 'bcrypt-ruby'
-
+gem 'rack'
+gem 'rack-test'
+gem 'factory_girl_rails'
