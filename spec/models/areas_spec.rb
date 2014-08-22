@@ -1,5 +1,3 @@
-require 'sinatra'
-require 'rack/test'
 set :enviroment, :test
 
 def app

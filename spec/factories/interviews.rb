@@ -1,6 +1,5 @@
 FactoryGirl.define do
 	factory :interview do
-		household
 		roof 'tin'
 		wall 'stucco'
 		floor 'wood'
@@ -29,6 +28,7 @@ FactoryGirl.define do
 		radio true
 		tv true
 		refrigerator false
-		consumed_foods {[FactoryGirl.build(:consumed_food)]}
+		consumed_food 
+		household
 	end
 end
