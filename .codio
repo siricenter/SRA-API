@@ -3,8 +3,11 @@
 
 // Run button configuration
   "commands": {
-        "Build Server": "./setup_codio.rb",
-	    "Run RSpec": "rake db:test:prepare; rake spec"
+	"Build Server": "./setup_codio.rb",
+	  "Run RSpec": "rake db:test:prepare; rake spec",
+	  "Run Cucumber": "rake cucumber",
+	  "Compile Assets" : "rake assets:clean; bundle exec rake assets:precompile",
+	  "Clean Assets" : "rake assets:clean"
   },
 
 // Preview button configuration

@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20140811211827) do
 
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  #enable_extension "plpgsql"
 
   create_table "area_relationships", force: true do |t|
     t.integer "area_id"
