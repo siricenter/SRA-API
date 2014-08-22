@@ -1,3 +1,4 @@
+require './models/interview_dsl'
 # == Schema Information
 #
 # Table name: interviews

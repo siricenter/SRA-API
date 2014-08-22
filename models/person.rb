@@ -17,12 +17,6 @@
 #
 
 class Person < ActiveRecord::Base
-	attr_accessible :birthday,
-		:education_level,
-		:family_name,
-		:gender,
-		:given_name,
-		:in_school
 	belongs_to :household
 	belongs_to :family_relationship
 

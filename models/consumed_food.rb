@@ -1,3 +1,4 @@
+require './models/consumed_food_dsl'
 # == Schema Information
 #
 # Table name: consumed_foods
@@ -18,7 +19,6 @@
 class ConsumedFood < ActiveRecord::Base
 	include ConsumedFoodDSL
 	belongs_to :interview
-	attr_accessible :frequency, :n_id, :servings
 	nutrients calories: "nf_calories", 
 		sugars_grams: "nf_sugars", 
 		fat_grams: "nf_total_fat", 

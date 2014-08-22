@@ -12,7 +12,6 @@
 
 class Event < ActiveRecord::Base
 	belongs_to :user
-	attr_accessible :start, :title
 
 	validates :start, presence: true
 	validates :title, presence: true

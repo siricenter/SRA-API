@@ -1,7 +1,6 @@
 source 'https://rubygems.org'  
 gem 'sinatra'
 gem "sinatra-activerecord"
-#gem 'sinatra-authentication'
 gem "rake"
 gem 'rspec'
 gem "pg"

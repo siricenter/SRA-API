@@ -1,6 +1,7 @@
-require 'sinatra'
-set :database_file, "./config/database.yml"
 require 'sinatra/activerecord'
+require 'warden'
+Dir["#{File.dirname(__FILE__)}/models/*.rb"].each {|file| require file}
+
 class API < Sinatra::Base
 	register Sinatra::ActiveRecordExtension
 	use Rack::Session::Cookie

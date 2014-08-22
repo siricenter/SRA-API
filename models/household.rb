@@ -10,7 +10,6 @@
 #
 
 class Household < ActiveRecord::Base
-	attr_accessible :name
 	has_many :people
 	has_one :interview
 	belongs_to :user # Interviewer

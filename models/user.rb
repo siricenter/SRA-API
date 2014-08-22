@@ -25,9 +25,9 @@
 class User < ActiveRecord::Base
 	# Include default devise modules. Others available are:
 	# :confirmable, :lockable, :timeoutable and :omniauthable
-    property :id, Serial, key: true
-    property :email, String, length: 128
-    property :encrypted_password, BCryptHash
+    #property :id, Serial, key: true
+    #property :email, String, length: 128
+    #property :encrypted_password, BCryptHash
 
 	
 
