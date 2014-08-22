@@ -33,7 +33,7 @@ class API < Sinatra::Base
         @users = @areas.users
         @users.households.to_json
         
-		}
+		
 	end
 #Retreives all the households belonging to a specific user.
 	get '/users/households' do

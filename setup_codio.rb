@@ -4,6 +4,14 @@ def bundle_install
 	puts `bundle install`
 end
 
+def install_postgres
+    unless `parts list`.match(/postgresql/)
+		puts `parts install postgresql`
+    end
+
+	puts `parts start postgresql`
+end
+
 def install_mysql
 	unless `parts list`.match(/mariadb/)
 		puts `parts install mariadb`
@@ -27,8 +35,11 @@ def install_phantomjs
 end
 
 def setup_database
-	puts `mysql -u root < setup_database.sh`
-	puts `rake db:reset`
+    
+	#puts `mysql -u root < setup_database.sh`
+	#puts `rake db:reset`
+	puts `rake db:setup`
+    
 end
 
 def start_server
@@ -62,8 +73,9 @@ def install_packages
 	end
 end
 
-install_mysql
+#install_mysql
 #install_mongo
+install_postgres
 install_phantomjs
 bundle_install
 setup_database
