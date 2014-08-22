@@ -155,7 +155,7 @@ class API < Sinatra::Base
 
 	use Warden::Manager do |manager|
 		manager.default_strategies :password
-		manager.failure_app = SRA.rb
+		#manager.failure_app = SRA.rb
 		manager.serialize_into_session {|user| user.id}
 		manager.serialize_from_session {|id| User.find_by_id(id)}
 	end

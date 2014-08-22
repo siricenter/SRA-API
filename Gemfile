@@ -2,13 +2,12 @@ source 'https://rubygems.org'
 gem 'sinatra'
 gem "sinatra-activerecord"
 gem "rake"
-gem 'rspec'
+gem 'rspec', group: [:test, :development]
 gem "pg"
-group :development, :test do
-	gem 'mysql2'								# Allows Rails to interact with MySQL
-end			
 gem 'warden'
 gem 'bcrypt-ruby'
 gem 'rack'
-gem 'rack-test'
-gem 'factory_girl_rails'
+gem 'rack-test', group: [:test]
+gem 'factory_girl', group: [:test, :development]
+gem 'database_cleaner', group: [:test]
+
