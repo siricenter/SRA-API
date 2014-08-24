@@ -1,4 +1,4 @@
-require './models/consumed_food_dsl'
+require './app/models/consumed_food_dsl'
 # == Schema Information
 #
 # Table name: consumed_foods

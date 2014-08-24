@@ -1,4 +1,4 @@
-require './models/interview_dsl'
+require './app/models/interview_dsl'
 # == Schema Information
 #
 # Table name: interviews
