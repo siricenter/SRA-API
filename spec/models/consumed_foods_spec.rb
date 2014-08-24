@@ -14,7 +14,8 @@
 #
 #  index_consumed_foods_on_interview_id  (interview_id)
 #
-describe CosumedFood do
+
+describe ConsumedFood do
 	subject {FactoryGirl.create(:consumed_food)}
 
 	it "has a valid factory" do

@@ -10,10 +10,6 @@
 
 set :enviroment, :test
 
-def app
-	Sinatra::Application
-end
-
 describe Area do
 	subject {FactoryGirl.build(:area)}
 

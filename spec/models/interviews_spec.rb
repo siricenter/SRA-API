@@ -38,10 +38,6 @@
 #
 set :enviroment, :test
 
-def app
-	Sinatra::Application
-end
-
 describe Interview do
     subject {FactoryGirl.create(:interview)}
 

@@ -1,9 +1,3 @@
-set :enviroment, :test
-
-def app
-	Sinatra::Application
-end
-
 # == Schema Information
 #
 # Table name: households
@@ -28,7 +22,7 @@ describe Household do
 		@household.name = nil
 		@household.should_not be_valid
 	end
-	
+
 	it "isn't valid without a user" do
 		@household.user = nil
 		@household.should_not be_valid

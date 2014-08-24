@@ -23,10 +23,6 @@
 #
 set :enviroment, :test
 
-def app
-	Sinatra::Application
-end
-
 describe User do
     subject {FactoryGirl.create(:user)}
 

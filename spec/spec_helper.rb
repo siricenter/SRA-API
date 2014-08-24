@@ -24,6 +24,14 @@ require 'faker'
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+module RspecMixin 
+	include Rack::Test::Methods
+	def app
+		API
+	end
+end
+
 RSpec.configure do |config|
 
 	config.before(:suite) do
