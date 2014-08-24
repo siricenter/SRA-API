@@ -36,7 +36,6 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #
-set :enviroment, :test
 
 describe Interview do
     subject {FactoryGirl.build(:interview)}

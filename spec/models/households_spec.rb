@@ -10,21 +10,19 @@
 #
 
 describe Household do
-	before :each do
-		@household = FactoryGirl.build(:household)
-	end
+	subject {FactoryGirl.build(:household)}
 
 	it "has a valid factory" do
-		@household.should be_valid
+		expect(subject).to be_valid
 	end
 
 	it "isn't valid without a name" do
-		@household.name = nil
-		@household.should_not be_valid
+		subject.name = nil
+		expect(subject).to_not be_valid
 	end
 
 	it "isn't valid without a user" do
-		@household.user = nil
-		@household.should_not be_valid
+		subject.user = nil
+		expect(subject).to_not be_valid
 	end
 end
