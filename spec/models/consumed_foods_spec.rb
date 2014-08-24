@@ -15,10 +15,9 @@
 #  index_consumed_foods_on_interview_id  (interview_id)
 #
 describe CosumedFood do
-    subject {FactoryGirl.create(:consumed_food)}
-    context '/areas/users/household/interview/consumed_food' do
-		it "should have a valid factory" do
-			expect(subject).to be_valid
-		end
+	subject {FactoryGirl.create(:consumed_food)}
+
+	it "has a valid factory" do
+		expect(subject).to be_valid
 	end
 end
