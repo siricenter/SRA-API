@@ -15,7 +15,7 @@ def app
 end
 
 describe Area do
-	subject {FactoryGirl.create(:area)}
+	subject {FactoryGirl.build(:area)}
 
 	it "has a valid factory" do
 		expect(subject).to be_valid
