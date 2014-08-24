@@ -53,6 +53,4 @@ class Interview < ActiveRecord::Base
 		:cholesterol_grams,
 		:vitamin_a_dv,
 		:vitamin_c_dv
-
-	validates_presence_of :consumed_foods
 end
