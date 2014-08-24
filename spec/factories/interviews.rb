@@ -28,7 +28,6 @@ FactoryGirl.define do
 		radio true
 		tv true
 		refrigerator false
-		consumed_food 
 		household
 	end
 end
