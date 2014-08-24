@@ -39,7 +39,7 @@
 set :enviroment, :test
 
 describe Interview do
-    subject {FactoryGirl.create(:interview)}
+    subject {FactoryGirl.build(:interview)}
 
 	it "has a valid factory" do
 		expect(subject).to be_valid

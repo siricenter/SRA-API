@@ -24,7 +24,7 @@
 set :enviroment, :test
 
 describe User do
-    subject {FactoryGirl.create(:user)}
+    subject {FactoryGirl.build(:user)}
 
 	it "should have a valid factory" do
 		expect(subject).to be_valid
