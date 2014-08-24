@@ -44,9 +44,8 @@ end
 
 describe Interview do
     subject {FactoryGirl.create(:interview)}
-    context '/areas/users/housholds/interview/:id' do
-		it "should have a valid factory" do
-			expect(subject).to be_valid
-		end
+
+	it "has a valid factory" do
+		expect(subject).to be_valid
 	end
 end
