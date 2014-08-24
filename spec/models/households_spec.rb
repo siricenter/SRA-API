@@ -18,11 +18,6 @@ end
 describe Household do
 	before :each do
 		@household = FactoryGirl.build(:household)
-		DatabaseCleaner.start
-	end
-
-	after :each do
-		DatabaseCleaner.clean
 	end
 
 	it "has a valid factory" do
