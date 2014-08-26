@@ -28,7 +28,6 @@ require 'faker'
 
 module RspecMixin 
 	include Rack::Test::Methods
-	include Warden::Test::Helpers
 
 	def app
 		API

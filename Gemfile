@@ -3,7 +3,6 @@ gem 'sinatra'
 gem "sinatra-activerecord"
 gem "rake"
 gem "pg"
-gem 'sinatra_warden'
 gem 'bcrypt'
 gem 'rack'
 

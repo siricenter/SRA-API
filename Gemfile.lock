@@ -1,14 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activemodel (4.1.4)
-      activesupport (= 4.1.4)
+    activemodel (4.1.5)
+      activesupport (= 4.1.5)
       builder (~> 3.1)
-    activerecord (4.1.4)
-      activemodel (= 4.1.4)
-      activesupport (= 4.1.4)
+    activerecord (4.1.5)
+      activemodel (= 4.1.5)
+      activesupport (= 4.1.5)
       arel (~> 5.0.0)
-    activesupport (4.1.4)
+    activesupport (4.1.5)
       i18n (~> 0.6, >= 0.6.9)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
@@ -52,15 +52,10 @@ GEM
     sinatra-activerecord (2.0.2)
       activerecord (>= 3.2)
       sinatra (~> 1.0)
-    sinatra_warden (0.3.2)
-      sinatra (>= 1.0.0)
-      warden (~> 1.0)
     thread_safe (0.3.4)
     tilt (1.4.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    warden (1.2.3)
-      rack (>= 1.0)
 
 PLATFORMS
   ruby
@@ -77,4 +72,3 @@ DEPENDENCIES
   rspec
   sinatra
   sinatra-activerecord
-  sinatra_warden

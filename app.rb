@@ -1,12 +1,11 @@
 require 'sinatra/activerecord'
-require 'warden'
 Dir["#{File.dirname(__FILE__)}/app/models/*.rb"].each {|file| require file}
 
 class API < Sinatra::Base
 	register Sinatra::ActiveRecordExtension
 	use Rack::Session::Cookie
 	
-	#create new Area
+	# Create a new Area
 	post '/areas' do
 		area = Area.new(params[:area])    
 		area.save!
@@ -150,72 +149,6 @@ class API < Sinatra::Base
 	delete '/areas/users/household/:id' do
 		household = Household.find(:id)
 		household.delete
-	end
-
-	#get "/login" do
-	#	erb '/login'.to_sym
-	#end
-
-	# The call used when the user signs in. It will authenticate the User calling authenticate method defined below. 
-	# If valid than redirect to /users path
-	post "/session" do
-		warden_handler.authenticate!
-		if warden_handler.authenticated?
-			redirect "/users/#{warden_handler.user.id}" 
-		else
-			redirect "/"
-		end
-	end
-
-	#action for when user logs out.
-	get "/logout" do
-		warden_handler.logout
-		redirect '/login'
-	end
-
-	post "/unauthenticated" do
-		redirect "/"
-	end
-
-	use Warden::Manager do |manager|
-		manager.default_strategies :password
-		#manager.failure_app = SRA.rb
-		manager.serialize_into_session {|user| user.id}
-		manager.serialize_from_session {|id| User.find_by_id(id)}
-	end
-
-	Warden::Manager.before_failure do |env,opts|
-		env['REQUEST_METHOD'] = 'POST'
-	end
-
-	Warden::Strategies.add(:password) do
-		#validate the email and the password passed into warden
-		def valid?
-			params["email"] || params["password"]
-		end
-		#Authenticates the user 
-
-		def authenticate!
-			user = User.find_by_email(params["email"])
-			if user && user.authenticate(params["password"])
-				success!(user)
-			else
-				fail!("Could not log in")
-			end
-		end
-
-		def warden_handler
-			env['warden']
-		end
-
-		#stores the Authenticated user in the current_user object
-		def current_user
-			warden_handler.user
-		end
-
-		def check_authentication
-			redirect '/login' unless warden_handler.authenticated?
-		end
 	end
 end
 
