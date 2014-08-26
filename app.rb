@@ -4,6 +4,10 @@ Dir["#{File.dirname(__FILE__)}/app/models/*.rb"].each {|file| require file}
 class API < Sinatra::Base
 	register Sinatra::ActiveRecordExtension
 	use Rack::Session::Cookie
+
+	post '/session' do
+		return 403 unless params[:key]
+	end
 	
 	# Create a new Area
 	post '/areas' do
