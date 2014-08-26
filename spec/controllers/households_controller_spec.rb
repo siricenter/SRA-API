@@ -39,6 +39,7 @@ describe 'Households' do
             end
         end
 	end
+	
     context '/households/:id' do
 		it "updates a household" do
 			household = FactoryGirl.create(:household, name: "Johnson")
@@ -61,7 +62,16 @@ describe 'Households' do
 			household = JSON.parse(json)
             expect(houshold.id).to eq(Household.last.id)
         end
+
+		it "should return a stringified version of the specified household" do
+			household = FactoryGirl.create(:household)
+			get "/households/#{household.to_param}"
+			json = last_response.body
+			household_hash = JSON.parse(json)
+			expect(household_hash['name']).to eq(household.name)
+		end
     end
+
     context '/households/interview/:id' do
         it "should return the interview associated with the household" do
             household = FactoryGirl.create(:household)
@@ -72,6 +82,7 @@ describe 'Households' do
             expect(interview.count).to eq(1)
             expect(interview.first['id']).to eq(household.interview.id)
         end
+		
         it "should delete an interview associated with a household" do
             household = FactoryGirl.create(:household)
             household.interviews << Interview.new
@@ -79,13 +90,13 @@ describe 'Households' do
             household.destroy
             expect(Interview.exists?(interview.to_param)).to be false
         end
+
         it "should update an interview associated with a household" do
             household = FactoryGirl.create(:household)
             household.interviews << Interview.new
             put "/households/#{interview.to_params}",{interview:{roof: "tin"}}
             household.interviews.reload
             expect(household.interviews.roof).to eq("tin")
-            
         end
-        
+	end
 end
