@@ -13,14 +13,18 @@ describe 'auth' do
 			}
 		end
 
-
 		it "requires an api key to work" do
 			@params[:key] = nil
 			post '/session', @params
 			expect(last_response.status).to eq(403)
 		end
 
-		it "requires login credentials to work"
+		it "requires login credentials to work" do
+			@params[:user] = nil
+			post '/session', @params
+			expect(last_response.status).to eq(403)
+		end
+
 		it "requires an email"
 		it "requires a password"
 		it "returns a randomly generated token"
