@@ -122,7 +122,7 @@ class API < Sinatra::Base
 	#destroys a specific area
 	delete '/areas/:id' do
 		area = Area.find(params[:id])
-		area.delete
+		area.destroy
 	end
 
 	#destroys a specific user

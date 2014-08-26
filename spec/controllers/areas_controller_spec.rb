@@ -33,5 +33,11 @@ describe 'Areas' do
 			area.reload
 			expect(area.name).to eq('updated')
 		end
+
+		it "should destroy a previously created area" do
+			area = FactoryGirl.create(:area)
+			delete "/areas/#{area.to_param}"
+			expect(Area.exists?(area.to_param)).to be false
+		end
 	end
 end
