@@ -14,7 +14,7 @@ describe 'Households' do
 		it "creates a new household" do
 			expect {
 				post '/households', {household: {name: 'household 51'}}
-			}.to change(household, :count).by(1)
+			}.to change(Household, :count).by(1)
 		end
 	end
 end

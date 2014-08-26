@@ -48,6 +48,10 @@ class API < Sinatra::Base
 		Household.all.to_json
 	end
 
+	post '/households' do
+		{id: Household.create!(params[:household]).to_param}.to_json
+	end
+
 	#Retreives all the households belonging to a specific user.
 	get '/users/households' do
 		@households = Household.all
