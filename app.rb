@@ -8,6 +8,7 @@ class API < Sinatra::Base
 	post '/session' do
 		return 403 unless params[:key]
 		return 403 unless params[:user] and params[:user][:email] and params[:user][:password]
+		return 'TOKEN1000'
 	end
 	
 	# Create a new Area
