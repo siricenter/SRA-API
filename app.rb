@@ -12,6 +12,10 @@ class API < Sinatra::Base
 		area.save
 	end
 
+	get '/areas/:id' do
+		Area.find(params[:id]).to_json
+	end
+
 	#Create a user within an area
 	post '/areas/users' do
 		user = User.new({:email => params[:user][:email], :password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation]})
