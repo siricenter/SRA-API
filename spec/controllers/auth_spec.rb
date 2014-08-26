@@ -25,7 +25,12 @@ describe 'auth' do
 			expect(last_response.status).to eq(403)
 		end
 
-		it "requires an email"
+		it "requires an email" do
+			@params[:user][:email] = nil
+			post '/session', @params
+			expect(last_response.status).to eq(403)
+		end
+
 		it "requires a password"
 		it "returns a randomly generated token"
 		it "stores the given token in a database"
