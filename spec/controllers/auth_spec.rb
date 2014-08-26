@@ -13,6 +13,11 @@ describe 'auth' do
 			}
 		end
 
+		it "returns 200 on valid query" do
+			post '/session', @params
+			expect(last_response.status).to eq(200)
+		end
+
 		it "requires an api key to work" do
 			@params[:key] = nil
 			post '/session', @params
