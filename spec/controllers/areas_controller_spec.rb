@@ -1,6 +1,6 @@
 describe 'Areas' do
+	include RspecMixin
 	context '/areas' do
-		include RspecMixin
 		it "returns a stringified array of all areas the user can see" do
 			area = FactoryGirl.create(:area)
 			get '/areas'
@@ -19,7 +19,6 @@ describe 'Areas' do
 	end
 
 	context '/areas/:id' do
-		include RspecMixin
 		it "should return a stringified version of the specified array" do
 			area = FactoryGirl.create(:area)
 			get "/areas/#{area.to_param}"
