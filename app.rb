@@ -114,7 +114,7 @@ class API < Sinatra::Base
 	#updates a specific area
 	put '/areas/:id' do
 		area = Area.find(params[:id])
-		area.update(:area)
+		area.update(params[:area])
 		area.save
 	end
 

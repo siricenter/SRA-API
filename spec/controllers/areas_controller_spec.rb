@@ -21,5 +21,12 @@ describe 'Areas' do
 			area_hash = JSON.parse(json)
 			expect(area_hash['name']).to eq(area.name)
 		end
+
+		it "should update a previously created area" do
+			area = FactoryGirl.create(:area)
+			put "/areas/#{area.to_param}", {area: {name: 'updated'}}
+			area.reload
+			expect(area.name).to eq('updated')
+		end
 	end
 end
