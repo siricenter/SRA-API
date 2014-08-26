@@ -16,5 +16,17 @@ describe 'Households' do
 				post '/households', {household: {name: 'household 51'}}
 			}.to change(Household, :count).by(1)
 		end
+        it "delete a household" do
+            expect{
+                delete '/households', {household: {name: 'household 51'}}
+                }.to change(Household, :count).by(-1)
+        end
+        it "updates a household" do
+            household = FactoryGirl.create(:household)
+            put '/households'
+            household.name = "Johnson"
+            expect(households.first['name'] != "Rodriguez") 
+        end
+        
 	end
 end

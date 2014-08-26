@@ -75,9 +75,9 @@ end
 
 #install_mysql
 #install_mongo
+bundle_install
 install_postgres
 install_phantomjs
-bundle_install
 setup_database
 start_server
 get_vimrc
