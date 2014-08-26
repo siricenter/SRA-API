@@ -16,8 +16,6 @@ GEM
       tzinfo (~> 1.1)
     arel (5.0.1.20140414130214)
     bcrypt (3.1.7)
-    bcrypt-ruby (3.1.5)
-      bcrypt (>= 3.1.3)
     builder (3.2.2)
     database_cleaner (1.3.0)
     diff-lcs (1.2.5)
@@ -54,6 +52,9 @@ GEM
     sinatra-activerecord (2.0.2)
       activerecord (>= 3.2)
       sinatra (~> 1.0)
+    sinatra_warden (0.3.2)
+      sinatra (>= 1.0.0)
+      warden (~> 1.0)
     thread_safe (0.3.4)
     tilt (1.4.1)
     tzinfo (1.2.2)
@@ -65,7 +66,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt-ruby
+  bcrypt
   database_cleaner
   factory_girl
   faker
@@ -76,4 +77,4 @@ DEPENDENCIES
   rspec
   sinatra
   sinatra-activerecord
-  warden
+  sinatra_warden

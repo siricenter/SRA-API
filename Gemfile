@@ -3,8 +3,8 @@ gem 'sinatra'
 gem "sinatra-activerecord"
 gem "rake"
 gem "pg"
-gem 'warden'
-gem 'bcrypt-ruby'
+gem 'sinatra_warden'
+gem 'bcrypt'
 gem 'rack'
 
 # Testing Gems
