@@ -15,6 +15,8 @@ describe 'auth' do
 		end
 
 		it "requires login credentials to work"
+		it "requires an email"
+		it "requires a password"
 		it "returns a randomly generated token"
 		it "stores the given token in a database"
 		it "associates the token with a user account"
