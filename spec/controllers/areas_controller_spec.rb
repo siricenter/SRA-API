@@ -10,6 +10,12 @@ describe 'Areas' do
 			expect(areas.first['id']).to eq(area.id)
 			expect(areas.first['name']).to eq(area.name)
 		end
+
+		it "creates a new area" do
+			expect {
+				post '/areas', {area: {name: 'Area 51'}}
+			}.to change(Area, :count).by(1)
+		end
 	end
 
 	context '/areas/:id' do

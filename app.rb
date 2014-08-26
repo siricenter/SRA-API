@@ -8,8 +8,9 @@ class API < Sinatra::Base
 	
 	#create new Area
 	post '/areas' do
-		area = Area.new(:name => params[:name])    
-		area.save
+		area = Area.new(params[:area])    
+		area.save!
+		return {id: area.id}.to_json
 	end
 
 	get '/areas/:id' do
