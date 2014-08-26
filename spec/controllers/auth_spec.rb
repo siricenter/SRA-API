@@ -4,7 +4,13 @@ describe 'auth' do
 	describe 'login' do
 		before :each do
 			@user = FactoryGirl.create(:user)
-			@params = {user: {}}
+			@params = {
+				key: '0000', 
+				user: {
+					email: 'test@test.com',
+					password: 'password01'
+				}
+			}
 		end
 
 
