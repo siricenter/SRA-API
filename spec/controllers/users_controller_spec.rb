@@ -16,34 +16,35 @@ describe 'Users' do
                 post '/users', {user: {email: 'test@gmail.com'}}
                 }.to change(User, :count).by(1)
 		end
-         
+        
+        it "updates all users" do
+        end
+        
+        it "deletes all users" do
+        end
 	end
     
     context '/users/:id' do
         it "returns the desired stringified user object" do
-            user = FactoryGirl.create(:user)
-            get 'users/:id'
+            joey = FactoryGirl.create(:user)
+            get "users/#{joey.to_param}"
             json = last_response.body
-            user = JSON.parse(json)
-            expect(User.last).to eq(:user)
+            joey = JSON.parse(json)
+            expect(User.last).to eq(joey)
         end
         
         it "should delete the desired user" do
             user = FactoryGirl.create(:user)
-            delete 'users/:id'
+            delete "users/#{user.to_param}"
             user.destroy
             expect(User.last).to_be_nil
         end
     
         it "should update a desired user" do
             user = FactoryGirl.create(:user, email:"test@test.com")
-            put 'users/#{user.to_param}', {user: {email: 'updated@test.com'}}
+            put "users/#{user.to_param}", {user: {email: 'updated@test.com'}}
             user.reload
             expect(user.email).to eq("test1@test.com")
         end
     end
-    
-    
-    
-        
 end
