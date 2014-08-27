@@ -7,8 +7,8 @@ describe 'Interviews' do
 			json = last_response.body
             interviews = JSON.parse(json)
             expect(interviews.count).to eq(1)
-            expect(interviews.first['id']).to eq(household.id)
-            expect(interviews.first['name']).to eq(household.name)
+            expect(interviews.first['id']).to eq(interview.id)
+            expect(interviews.first['name']).to eq(interview.name)
 		end
 
         it "creates a new interview" do
@@ -16,5 +16,18 @@ describe 'Interviews' do
                 post '/interviews', {interview: {id: 1}}
                 }.to change(Interview, :count).by(1)
 		end
+        
 	end
+    context '/interviews/:id' do
+        it "should return a specific interview" do
+            interview = FactoryGirl.create(:interview)
+            get '/interviews/#{interview.to_params}',{interviews:{id: 1}}
+            json = last_response.body
+            interview = JSON.parse(json)
+            expect(interviews.count).to eq(1)
+            expect(interviews.first['id']).to eq(interview.id)
+            expect(interviews.first['name']).to eq(interview.name)
+        end
+            
+            
 end
