@@ -44,7 +44,9 @@ describe 'auth' do
 
 		it "returns a randomly generated token" do
 			# For now, we'll just use a hard coded value
-			post '/session', @params
+			expect {
+				post '/session', @params
+			}.to change(Token, :count).by(1)
 			expect(last_response.body).to eq('TOKEN1000')
 		end
 
