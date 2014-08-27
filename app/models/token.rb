@@ -1,4 +1,3 @@
 class Token < ActiveRecord::Base
-	validates :token, presence: true
-	validates_presence_of :user
+	validates :token_string, presence: true
 end
