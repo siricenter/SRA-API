@@ -49,6 +49,7 @@ describe 'auth' do
 		end
 
 		it "stores the given token in a database"
+		it 'requires the email/password combination to be valid'
 		it "associates the token with a user account"
 	end
 end
