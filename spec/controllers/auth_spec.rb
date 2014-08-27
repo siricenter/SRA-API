@@ -44,13 +44,16 @@ describe 'auth' do
 
 		it "returns a randomly generated token" do
 			# For now, we'll just use a hard coded value
-			expect {
-				post '/session', @params
-			}.to change(Token, :count).by(1)
+			post '/session', @params
 			expect(last_response.body).to eq('TOKEN1000')
 		end
 
-		it "stores the given token in a database"
+		it "stores the given token in a database" do
+			expect {
+				post '/session', @params
+			}.to change(Token, :count).by(1)
+		end
+
 		it 'requires the email/password combination to be valid'
 		it "associates the token with a user account"
 	end
