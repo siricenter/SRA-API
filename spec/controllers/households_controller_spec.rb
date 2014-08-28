@@ -62,4 +62,30 @@ describe 'Households' do
             expect(houshold.id).to eq(Household.last.id)
         end
     end
+    context '/households/interview/:id' do
+        it "should return the interview associated with the household" do
+            household = FactoryGirl.create(:household)
+            household.interviews << Interview.new
+            get "/households/interview/#{interview.to_param}"
+            json = last_response.body
+            interview = JSON.parse(json)
+            expect(interview.count).to eq(1)
+            expect(interview.first['id']).to eq(household.interview.id)
+        end
+        it "should delete an interview associated with a household" do
+            household = FactoryGirl.create(:household)
+            household.interviews << Interview.new
+            delete "/households/#{interview.to_param}"
+            household.destroy
+            expect(Interview.exists?(interview.to_param)).to be false
+        end
+        it "should update an interview associated with a household" do
+            household = FactoryGirl.create(:household)
+            household.interviews << Interview.new
+            put "/households/#{interview.to_params}",{interview:{roof: "tin"}}
+            household.interviews.reload
+            expect(household.interviews.roof).to eq("tin")
+            
+        end
+        
 end

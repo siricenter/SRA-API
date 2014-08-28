@@ -39,5 +39,5 @@ describe 'Areas' do
 			delete "/areas/#{area.to_param}"
 			expect(Area.exists?(area.to_param)).to be false
 		end
-	end
+    end
 end
