@@ -59,7 +59,7 @@ describe 'Households' do
             get "/households/#{household.to_param}"
             json = last_response.body
 			household = JSON.parse(json)
-            expect(houshold.id).to eq()
+            expect(houshold.id).to eq(Household.last.id)
         end
     end
 end

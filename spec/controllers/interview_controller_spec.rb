@@ -29,7 +29,7 @@ describe 'Interviews' do
 			expect(interview.first['name']).to eq(interview.name)
 		end
 
-		it "should update a interview" do
+        it "should update an existing interview" do
 			interview = FactoryGirl.create(:interview)
 			put "/interviews/#{interview.to_params}",{interview:{roof: "tin"}}
 			interview.reload

@@ -42,9 +42,58 @@ describe 'Users' do
     
         it "should update a desired user" do
             user = FactoryGirl.create(:user, email:"test@test.com")
-            put "users/#{user.to_param}", {user: {email: 'updated@test.com'}}
+            put "/users/#{user.to_param}", {user: {email: 'updated@test.com'}}
             user.reload
             expect(user.email).to eq("test1@test.com")
         end
+    end
+    context '/users/:id/areas' do 
+        it 'Should return the areas associated with that user' do
+            user = FactoryGirl.create(:user)
+            area = user.areas << Area.new
+            get "/users/#{user.to_param}/areas"
+            expect(areas.count).to eq(1)
+        end
+        it 'Should assign a area to user' do
+            user = FactoryGirl.create(:user)
+            area = user.areas << Area.new(name: "Rexburg")
+            put "/users/#{user.to_param}/areas"
+            expect(user.areas).to eq(1)
+            expect(user.areas.name).to eq("Rexburg")
+        end
+    end
+    context '/users/:id/households' do
+        it "should return all the households for that user" do
+       		user = FactoryGirl.create(:user)
+        	household = FactoryGirl.create(:household, name: "Johnson")
+        	user.housholds << household
+        	get "/users/#{user.to_param}/households"
+        	expect(user.households).to eq(1)
+    	end
+        it 'Should delete the households for that user ' do
+            user = FactoryGirl.create(:user)
+            household = FactoryGirl.create(:household, name:"Johnson")
+            user.households << household
+            delete "/users/#{user.to_param}/households"
+            expect(user.households).to_be_nil
+        end
+    end
+    context '/users/households/:id' do
+        it "should delete a houshold for a user" do
+            user = FactoryGirl.create(:user)
+            household = FactoryGirl.create(:household, name: "Johnson")
+            user.households << household
+            delete "/users/households/#{household.param}"
+            expect(user.households).to_be_nil
+        end
+        it "should update a area for user" do
+            user = FactoryGirl.create(:user)
+            household = FactoryGirl.create(:household, name: "Johnson")
+            user.households << household
+            put "/users/#{household.to_param}", {household: {name: 'Wilson'}}
+            expect(user.households[0].name).to eq("Wilson")
+            expect(user.households.count).to eq(1)
+        end
+            
     end
 end
