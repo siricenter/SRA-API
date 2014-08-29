@@ -12,10 +12,10 @@
 class Household < ActiveRecord::Base
 	has_many :people
 	has_one :interview
-	belongs_to :user # Interviewer
+	belongs_to :area
     
 	accepts_nested_attributes_for :people
     
 	validates :name, presence: true
-	validates_presence_of :user
+	validates_presence_of :area
 end
