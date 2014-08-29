@@ -23,21 +23,13 @@
 #
 
 class User < ActiveRecord::Base
-	# Include default devise modules. Others available are:
-	# :confirmable, :lockable, :timeoutable and :omniauthable
-    #property :id, Serial, key: true
-    #property :email, String, length: 128
-    #property :encrypted_password, BCryptHash
-
-	
-
-
     has_many :areas, through: :area_relationships 
 	has_and_belongs_to_many :roles
 
     has_many :area_relationships
 	has_many :events
 	has_many :households
+	has_many :tokens
 
 	def has_role? role_name
         roles = self.roles.where(name: role_name.to_s)

@@ -8,7 +8,9 @@ class API < Sinatra::Base
 	post '/session' do
 		return 403 unless params[:key]
 		return 403 unless params[:user] and params[:user][:email] and params[:user][:password]
-		token = Token.new({token_string: 'TOKEN1000', user_id: nil})
+		user = User.where(email: params[:user][:email]).first
+		return 403 unless user.password == params[:user][:password]
+		token = Token.new({token_string: 'TOKEN1000', user: user})
 		token.save!
 		return token.token_string
 	end

@@ -7,8 +7,8 @@ describe 'auth' do
 			@params = {
 				key: '0000', 
 				user: {
-					email: 'test@test.com',
-					password: 'password01'
+					email: @user.email,
+					password: @user.password
 				}
 			}
 		end
@@ -54,7 +54,15 @@ describe 'auth' do
 			}.to change(Token, :count).by(1)
 		end
 
-		it 'requires the email/password combination to be valid'
-		it "associates the token with a user account"
+		it 'requires the email/password combination to be valid' do
+			@params[:user][:password] = 'randomwrongpassword01'
+			post '/session', @params
+			expect(last_response.status).to eq(403)
+		end
+
+		it "associates the token with a user account" do
+			post '/session', @params
+			expect(Token.last.user).to eq(@user)
+		end
 	end
 end
