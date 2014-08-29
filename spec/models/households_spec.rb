@@ -21,8 +21,8 @@ describe Household do
 		expect(subject).to_not be_valid
 	end
 
-	it "isn't valid without a user" do
-		subject.user = nil
+	it "isn't valid without a area" do
+		subject.area = nil
 		expect(subject).to_not be_valid
 	end
 end
