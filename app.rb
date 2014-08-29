@@ -70,6 +70,10 @@ class API < Sinatra::Base
 		household.update(params[:household])
 	end
 
+	delete '/households/:id' do
+		Household.find(params[:id]).destroy
+	end
+
 	#Retreives all the households belonging to a specific user.
 	get '/users/households' do
 		@households = Household.all

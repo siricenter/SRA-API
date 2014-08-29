@@ -18,29 +18,29 @@ describe 'Households' do
 			}.to change(Household, :count).by(1)
 		end
 	end
-	
-    context '/households/:id' do
+
+	context '/households/:id' do
 		it "updates a household" do
 			household = FactoryGirl.create(:household, name: "Johnson")
-            put "/households/#{household.to_param}", {household: {name: 'Miller'}}
+			put "/households/#{household.to_param}", {household: {name: 'Miller'}}
 			household.reload
 			expect(household.name).to eq("Miller")
 		end
 
-    	it "destroys a household" do 
-        	household = FactoryGirl.create(:household)
-            delete "/households/#{household.to_param}"
-        	household.destroy
-        	expect(household.id).to_be_nil
-    	end
-    
-    	it "returns an id to a specific household" do
-            household = FactoryGirl.create(:household)
-            get "/households/#{household.to_param}"
-            json = last_response.body
+		it "should destroy a previously created household" do
+			household = FactoryGirl.create(:household)
+			expect {
+				delete "/households/#{household.to_param}"
+			}.to change(Household, :count).by(-1)
+		end
+
+		it "returns an id to a specific household" do
+			household = FactoryGirl.create(:household)
+			get "/households/#{household.to_param}"
+			json = last_response.body
 			household = JSON.parse(json)
-            expect(houshold.id).to eq(Household.last.id)
-        end
+			expect(houshold.id).to eq(Household.last.id)
+		end
 
 		it "should return a stringified version of the specified household" do
 			household = FactoryGirl.create(:household)
@@ -49,5 +49,5 @@ describe 'Households' do
 			household_hash = JSON.parse(json)
 			expect(household_hash['name']).to eq(household.name)
 		end
-    end
+	end
 end
