@@ -10,11 +10,12 @@ describe 'Households' do
 			expect(households.first['id']).to eq(household.id)
 			expect(households.first['name']).to eq(household.name)
 		end
-        
-		it "should create a household" do
-            expect {
-                post '/households', {household: {name: 'Johnson'}}
-			}.to change(Area, :count).by(1)
+
+		it "creates a new household" do
+			area = FactoryGirl.create(:area)
+			expect {
+				post '/households', {household: {name: 'household 51', area_id: area.to_param}}
+			}.to change(Household, :count).by(1)
 		end
 	end
 	
