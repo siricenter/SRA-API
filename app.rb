@@ -185,5 +185,9 @@ class API < Sinatra::Base
 		household = Household.find(:id)
 		household.delete
 	end
+
+	get '/regions' do
+		Region.all.to_json
+	end
 end
 
