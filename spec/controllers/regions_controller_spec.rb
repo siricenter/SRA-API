@@ -40,6 +40,11 @@ describe 'Regions' do
 			expect(region.name).to eq('updated')
 		end
 
-		it 'destroys a specific region'
+		it 'destroys a specific region' do
+			region = FactoryGirl.create(:region)
+			expect {
+				delete "/regions/#{region.to_param}"
+			}.to change(Region, :count).by(-1)
+		end
 	end
 end

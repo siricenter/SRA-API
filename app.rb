@@ -14,7 +14,7 @@ class API < Sinatra::Base
 		token.save!
 		return token.token_string
 	end
-	
+
 	# Create a new Area
 	post '/areas' do
 		area = Area.new(params[:area])    
@@ -201,6 +201,10 @@ class API < Sinatra::Base
 
 	put '/regions/:id' do
 		Region.find(params[:id]).update(params[:region]).to_json
+	end
+
+	delete '/regions/:id' do
+		Region.find(params[:id]).destroy
 	end
 end
 
