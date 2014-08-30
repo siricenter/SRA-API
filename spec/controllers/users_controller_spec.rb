@@ -43,6 +43,11 @@ describe 'Users' do
 			expect(user.email).to eq(new_email)
 		end
 
-		it "destroys the specified user"
+		it "destroys the specified user" do
+			user = FactoryGirl.create(:user)
+			expect {
+				delete "/users/#{user.to_param}"
+			}.to change(User, :count).by(-1)
+		end
 	end
 end
