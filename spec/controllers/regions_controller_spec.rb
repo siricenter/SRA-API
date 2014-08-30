@@ -22,7 +22,17 @@ describe 'Regions' do
 	end
 
 	context '/regions/:id' do
-		it 'retrieves a specific region'
+		it 'retrieves a specific region' do
+			region = FactoryGirl.create(:region)
+			get "/regions/#{region.to_param}"
+			expect(last_response.status).to eq(200)
+			
+			json = last_response.body
+			region1_hash = JSON.parse(json)
+			region1 = Region.new(region1_hash)
+			expect(region1).to eq(region)
+		end
+
 		it 'updates a specific region'
 		it 'destroys a specific region'
 	end
