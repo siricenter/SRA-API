@@ -35,7 +35,14 @@ describe 'Users' do
 			expect(user1).to eq(user)
 		end
 
-		it "updates the specified user"
+		it "updates the specified user" do
+			user = FactoryGirl.create(:user)
+			new_email = 'newemail@email.com'
+			put "/users/#{user.to_param}", {user: {email: new_email}}
+			user.reload
+			expect(user.email).to eq(new_email)
+		end
+
 		it "destroys the specified user"
 	end
 end

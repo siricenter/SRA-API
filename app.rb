@@ -102,6 +102,10 @@ class API < Sinatra::Base
 		User.find(params[:id]).to_json
 	end
 
+	put '/users/:id' do
+		User.find(params[:id]).update(params[:user])
+	end
+
 	#Retreives the interviews belonging a specific user 
 	get '/areas/users/:id/interviews' do
 		Interview.find_by(params[:id]).to_json
