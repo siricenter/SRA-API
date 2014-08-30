@@ -24,5 +24,9 @@ describe 'Users' do
 		end
 	end
 
-	context '/users/:id'
+	context '/users/:id' do
+		it "returns a stringified version of the specified user"
+		it "updates the specified user"
+		it "destroys the specified user"
+	end
 end
