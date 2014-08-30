@@ -198,5 +198,9 @@ class API < Sinatra::Base
 	get '/regions/:id' do
 		Region.find(params[:id]).to_json
 	end
+
+	put '/regions/:id' do
+		Region.find(params[:id]).update(params[:region]).to_json
+	end
 end
 

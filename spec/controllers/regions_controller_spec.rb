@@ -33,7 +33,13 @@ describe 'Regions' do
 			expect(region1).to eq(region)
 		end
 
-		it 'updates a specific region'
+		it 'updates a specific region' do
+			region = FactoryGirl.create(:region)
+			put "/regions/#{region.to_param}", {region: {name: 'updated'}}
+			region.reload
+			expect(region.name).to eq('updated')
+		end
+
 		it 'destroys a specific region'
 	end
 end
