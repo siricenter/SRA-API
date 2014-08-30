@@ -14,7 +14,11 @@ describe 'Regions' do
 			expect(region1).to eq(region)
 		end
 
-		it 'creates a new region'
+		it 'creates a new region' do
+			expect {
+				post '/regions', {region: {name: 'Ukraine'}}
+			}.to change(Region, :count).by(1)
+		end
 	end
 
 	context '/regions/:id' do

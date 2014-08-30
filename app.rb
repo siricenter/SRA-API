@@ -189,5 +189,10 @@ class API < Sinatra::Base
 	get '/regions' do
 		Region.all.to_json
 	end
+
+	post '/regions' do
+		region = Region.create(params[:region])
+		{id: region.id}.to_json
+	end
 end
 
