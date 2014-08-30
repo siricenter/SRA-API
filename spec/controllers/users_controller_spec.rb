@@ -25,7 +25,16 @@ describe 'Users' do
 	end
 
 	context '/users/:id' do
-		it "returns a stringified version of the specified user"
+		it "returns a stringified version of the specified user" do
+			user = FactoryGirl.create(:user)
+			get "/users/#{user.to_param}"
+			expect(last_response.status).to eq(200)
+
+			user_hash = last_response.body
+			user1 = User.new(JSON.parse(user_hash))
+			expect(user1).to eq(user)
+		end
+
 		it "updates the specified user"
 		it "destroys the specified user"
 	end

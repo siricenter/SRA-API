@@ -99,7 +99,7 @@ class API < Sinatra::Base
 
 	#Retreives a specifc user by the user_id
 	get '/users/:id' do
-		User.find_by(params[:id]).to_json
+		User.find(params[:id]).to_json
 	end
 
 	#Retreives the interviews belonging a specific user 
