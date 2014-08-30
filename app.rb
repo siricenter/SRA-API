@@ -93,6 +93,10 @@ class API < Sinatra::Base
 		User.all.to_json
 	end
 
+	post '/users' do
+		User.create!(params[:user])
+	end
+
 	#Retreives a specifc user by the user_id
 	get '/users/:id' do
 		User.find_by(params[:id]).to_json

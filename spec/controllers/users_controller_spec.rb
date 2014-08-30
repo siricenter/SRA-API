@@ -12,7 +12,16 @@ describe 'Users' do
 			expect(User.new(users_list.first)).to eq(user)
 		end
 
-		it "creates a new User"
+		it "creates a new User" do
+			expect{
+				post '/users', {
+					user: {
+						email: Faker::Internet.email,
+						password: Faker::Internet.password
+					}
+				}
+			}.to change(User, :count).by(1)
+		end
 	end
 
 	context '/users/:id'
