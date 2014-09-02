@@ -206,5 +206,25 @@ class API < Sinatra::Base
 	delete '/regions/:id' do
 		Region.find(params[:id]).destroy
 	end
+
+	get '/roles' do
+		Role.all.to_json
+	end
+
+	post '/roles' do
+		{id: Role.create(params[:role]).id}.to_json
+	end
+
+	get '/roles/:id' do
+		Role.find(params[:id]).to_json
+	end
+
+	put '/roles/:id' do
+		Role.find(params[:id]).update(params[:role]).to_json
+	end
+
+	delete '/roles/:id' do
+		Role.find(params[:id]).destroy
+	end
 end
 
