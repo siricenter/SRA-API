@@ -226,5 +226,25 @@ class API < Sinatra::Base
 	delete '/roles/:id' do
 		Role.find(params[:id]).destroy
 	end
+
+	get '/interviews' do
+		Interview.all.to_json
+	end
+
+	post '/interviews' do
+		{id: Interview.create(params[:interview]).id}.to_json
+	end
+
+	get '/interviews/:id' do
+		Interview.find(params[:id]).to_json
+	end
+
+	put '/interviews/:id' do
+		Interview.find(params[:id]).update(params[:interview])
+	end
+
+	delete '/interviews/:id' do
+		Interview.find(params[:id]).destroy
+	end
 end
 
