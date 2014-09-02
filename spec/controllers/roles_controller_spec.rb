@@ -9,17 +9,6 @@ describe 'Roles' do
             expect(roles_js['id']).to eq(roles.id)
             expect(roles_js['name']).to eq(roles.name)
         end
-        it "should delete all the existing roles" do
-            roles = FactoryGirl.create(:role)
-            delete '/roles'
-            roles.destroy
-            expect(roles.count).to eq(0)
-        end
-        it "should update all the existing roles" do
-            roles = FactorGirl.create(:roles)
-            put '/roles' {roles: {name: 'admin'}}
-            expect(roles.name).to eq("admin")    
-        end
     end
     context '/roles/:id' do
         it "return an existing role" do
