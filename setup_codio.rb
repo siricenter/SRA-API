@@ -9,7 +9,7 @@ def install_postgres
 		puts `parts install postgresql`
     end
 
-	puts `parts start postgresql`
+    puts `parts restart postgresql`
 end
 
 def install_mysql

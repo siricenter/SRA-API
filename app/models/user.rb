@@ -22,6 +22,10 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #
 
+require 'uuid'
+UUID.state_file = false
+UUID.generator.next_sequence
+
 class User < ActiveRecord::Base
     has_many :areas, through: :area_relationships 
 	has_and_belongs_to_many :roles
