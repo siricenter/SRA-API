@@ -10,7 +10,8 @@ class API < Sinatra::Base
 		return 403 unless params[:user] and params[:user][:email] and params[:user][:password]
 		user = User.where(email: params[:user][:email]).first
 		return 403 unless user.password == params[:user][:password]
-		token = Token.new({token_string: 'TOKEN1000', user: user})
+        uuid = UUID.new.generate
+        token = Token.new({token_string: uuid, user_id: user.id})
 		token.save!
 		return token.token_string
 	end
