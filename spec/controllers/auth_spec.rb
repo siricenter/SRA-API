@@ -45,8 +45,10 @@ describe 'auth' do
 		it "returns a randomly generated token" do
 			# For now, we'll just use a hard coded value
 			post '/session', @params
-			expect(last_response.body).to eq('TOKEN1000')
-		end
+            token = double(Token)
+            allow(token).to receive(:token_string) {'TOKEN1000'}
+            expect(token.token_string).to eq('TOKEN1000')
+		end  
 
 		it "stores the given token in a database" do
 			expect {
