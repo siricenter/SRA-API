@@ -6,7 +6,7 @@
 
 FactoryGirl.define do
   factory :api_key do
-    key 'Aza928dhA'
+    key UUID.new.generate
     app_name 'MyAppName'
     type 'webApp'
     owner 'Jimmy'

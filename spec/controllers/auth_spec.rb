@@ -4,8 +4,9 @@ describe 'auth' do
 	describe 'login' do
 		before :each do
 			@user = FactoryGirl.create(:user)
+            api_key = FactoryGirl.create(:api_key)
 			@params = {
-				key: '0000', 
+                key: api_key.key, 
 				user: {
 					email: @user.email,
 					password: @user.password
@@ -18,9 +19,15 @@ describe 'auth' do
 			expect(last_response.status).to eq(200)
 		end
 
-		it "requires an api key to work" do
+        it "requires an api key" do
 			@params[:key] = nil
 			post '/session', @params
+			expect(last_response.status).to eq(403)
+		end
+        
+        it "requires an api key to be valid" do
+            @params[:key] = FactoryGirl.build(:api_key)
+            post '/session', @params
 			expect(last_response.status).to eq(403)
 		end
 

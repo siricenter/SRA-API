@@ -1,3 +1,6 @@
+require 'uuid'
+UUID.state_file = false
+UUID.generator.next_sequence
 require 'sinatra/activerecord'
 Dir["#{File.dirname(__FILE__)}/app/models/*.rb"].each {|file| require file}
 
@@ -10,6 +13,7 @@ class API < Sinatra::Base
 		return 403 unless params[:user] and params[:user][:email] and params[:user][:password]
 		user = User.where(email: params[:user][:email]).first
 		return 403 unless user.password == params[:user][:password]
+        return 403 unless ApiKey.exists?(key: params[:key])
         uuid = UUID.new.generate
         token = Token.new({token_string: uuid, user_id: user.id})
 		token.save!
