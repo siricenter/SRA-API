@@ -2,8 +2,10 @@ development:
     adapter: postgresql
     database: api_development
     pool: 5
+    socket: /var/run/postgresql
 
 test:
     adapter: postgresql
     database: api_test
     pool: 5
+    socket: /var/run/postgresql
