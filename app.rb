@@ -43,10 +43,6 @@ class API < Sinatra::Base
 		household = area.households <<  Household.new(:name => params[:household])        
 		household.save
 	end
-
-	
-
-	
     #Retreive all households
 	get '/households' do
 		Household.all.to_json
@@ -104,20 +100,10 @@ class API < Sinatra::Base
 	delete '/users/:id' do
 		User.find(params[:id]).destroy
 	end
-
-	
-
 	#retreives all the areas
 	get '/areas' do 
 		areas = Area.all
 		areas.to_json
-	end
-
-	#updates a specific household
-	put '/areas/:id/households' do
-		household = Household.find(params[:id])
-		household.update(params[:household])
-		household.save
 	end
 	#updates a specific area
 	put '/areas/:id' do
@@ -147,47 +133,47 @@ class API < Sinatra::Base
 	put '/regions/:id' do
 		Region.find(params[:id]).update(params[:region]).to_json
 	end
-    #update a region
+    #delete a region
 	delete '/regions/:id' do
 		Region.find(params[:id]).destroy
 	end
-
+    #retreives all roles
 	get '/roles' do
 		Role.all.to_json
 	end
-
+    #create a user
 	post '/roles' do
 		{id: Role.create(params[:role]).id}.to_json
 	end
-
+    #retreives a role
 	get '/roles/:id' do
 		Role.find(params[:id]).to_json
 	end
-
+    #updates a role
 	put '/roles/:id' do
 		Role.find(params[:id]).update(params[:role]).to_json
 	end
-
+    #deletes a role
 	delete '/roles/:id' do
 		Role.find(params[:id]).destroy
 	end
-
+    #retreives all interviews
 	get '/interviews' do
 		Interview.all.to_json
 	end
-
+    #creates an interview
 	post '/interviews' do
 		{id: Interview.create(params[:interview]).id}.to_json
 	end
-
+    #retreives a interview
 	get '/interviews/:id' do
 		Interview.find(params[:id]).to_json
 	end
-
+    #updates a interview
 	put '/interviews/:id' do
 		Interview.find(params[:id]).update(params[:interview])
 	end
-
+    #deletes a inerview
 	delete '/interviews/:id' do
 		Interview.find(params[:id]).destroy
 	end
