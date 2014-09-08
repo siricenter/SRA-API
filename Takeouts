@@ -42,3 +42,47 @@
 		role.update(:role)
 		role.save
 	end
+
+
+    
+    
+    #Retreives all the households belonging to a specific user.
+	get '/users/households' do
+		@households = Household.all
+		@user_households = user.households
+		respond_to { |format|
+			format.json { render :json => @user_households.to_json}
+		}
+	end
+	
+    
+
+    
+    #Retreives all the households within a specific area.
+	get '/areas/:id/households' do
+		Household.find_by(params[:id]).to_json
+	end
+
+    #Create a household within an area
+    app.post '/areas/:id/households' do
+        area = Area.find(params[:id])
+        household = area.households <<  Household.new(:name => params[:household])        
+        household.save
+    end
+	
+    #Updates a specific household within an area
+	put '/areas/:id/households' do
+		household = Household.find(params[:id])
+		household.update(params[:household])
+		household.save
+	end
+
+
+    
+    
+    
+    #Create a user within an area
+    app.post '/areas/users' do
+        user = User.new({:email => params[:user][:email], :password => params[:user][:password], :password_confirmation => params[:user][:password_confirmation]})
+        user.save
+    end
