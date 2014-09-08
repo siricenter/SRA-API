@@ -26,7 +26,7 @@ class API < Sinatra::Base
 		area.save!
 		return {id: area.id}.to_json
 	end
-
+    #Retreive an area
 	get '/areas/:id' do
 		Area.find(params[:id]).to_json
 	end
@@ -44,37 +44,27 @@ class API < Sinatra::Base
 		household.save
 	end
 
-	#Create an interview belonging to a specific user
-	post '/areas/users/:id/interviews' do
-		user = User.find(params[:id])
-		interview = user.interviews << Interview.new
-		interview.save
-	end
+	
 
-	#To gather all the household belonging to all users within an area
-	get '/areas/users/households' do
-		@areas = Area.all
-		@users = @areas.users
-		@users.households.to_json
-	end
-
+	
+    #Retreive all households
 	get '/households' do
 		Household.all.to_json
 	end
-
+    #create a Household
 	post '/households' do
 		{id: Household.create!(params[:household]).to_param}.to_json
 	end
-
+    #retreive a household
 	get '/households/:id' do
 		Household.find(params[:id]).to_json
 	end
-
+    #update a household
 	put '/households/:id' do
 		household = Household.find(params[:id])
 		household.update(params[:household])
 	end
-
+    #delete a household
 	delete '/households/:id' do
 		Household.find(params[:id]).destroy
 	end
@@ -97,7 +87,7 @@ class API < Sinatra::Base
 	get '/users' do
 		User.all.to_json
 	end
-
+    #create a user
 	post '/users' do
 		User.create!(params[:user])
 	end
@@ -106,30 +96,16 @@ class API < Sinatra::Base
 	get '/users/:id' do
 		User.find(params[:id]).to_json
 	end
-
+    #update a user
 	put '/users/:id' do
 		User.find(params[:id]).update(params[:user])
 	end
-
+    #delete a user
 	delete '/users/:id' do
 		User.find(params[:id]).destroy
 	end
 
-	#Retreives the interviews belonging a specific user 
-	get '/areas/users/:id/interviews' do
-		Interview.find_by(params[:id]).to_json
-	end
-
-	#retreives all the interviews done in the specified area
-	get '/areas/:id/interviews' do
-		Interview.find_by(params[:id]).to_json
-	end
-
-	#Retreives the roles of the specified the user
-	get '/areas/users/:id/roles' do
-		user = User.find(:id)
-		user.roles.to_json
-	end
+	
 
 	#retreives all the areas
 	get '/areas' do 
@@ -143,71 +119,35 @@ class API < Sinatra::Base
 		household.update(params[:household])
 		household.save
 	end
-
-	#updates a specific user within an area
-	put '/areas/users/:id' do
-		user = User.find(params[:id])
-		user.update(params[:user])
-		user.save
-	end
-
-	#UPDATES a specified users roles
-	put '/areas/users/:id/roles' do
-		user = User.find(params[:id])
-		role = user.roles
-		role.update(:role)
-		role.save
-	end
-
 	#updates a specific area
 	put '/areas/:id' do
 		area = Area.find(params[:id])
 		area.update(params[:area])
 		area.save
 	end
-
 	#destroys a specific area
 	delete '/areas/:id' do
 		area = Area.find(params[:id])
 		area.destroy
 	end
-
-	#destroys a specific user
-	delete '/areas/user/:id' do
-		user = User.find(params[:id])
-		user.delete
-	end
-
-	#destroys a specific houehold belonging to specific user
-	delete '/areas/users/:id/households/:household_id' do
-		user = User.find(params[:id])
-		household = user.housholds.where(id: :household_id)
-		household.save    
-	end
-
-	#destroys a household
-	delete '/areas/users/household/:id' do
-		household = Household.find(:id)
-		household.delete
-	end
-
+    #retreives all regions
 	get '/regions' do
 		Region.all.to_json
 	end
-
+    #create a region
 	post '/regions' do
 		region = Region.create(params[:region])
 		{id: region.id}.to_json
 	end
-
+    #Retreive a region
 	get '/regions/:id' do
 		Region.find(params[:id]).to_json
 	end
-
+    #update a Region
 	put '/regions/:id' do
 		Region.find(params[:id]).update(params[:region]).to_json
 	end
-
+    #update a region
 	delete '/regions/:id' do
 		Region.find(params[:id]).destroy
 	end

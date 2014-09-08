@@ -1,0 +1,44 @@
+#Create an interview belonging to a specific user
+	post '/areas/users/:id/interviews' do
+		user = User.find(params[:id])
+		interview = user.interviews << Interview.new
+		interview.save
+	end
+	
+	#To gather all the household belonging to all users within an area
+	get '/areas/users/households' do
+		@areas = Area.all
+		@users = @areas.users
+		@users.households.to_json
+	end
+	
+	#Retreives the interviews belonging a specific user 
+	get '/areas/users/:id/interviews' do
+		Interview.find_by(params[:id]).to_json
+	end
+
+	#retreives all the interviews done in the specified area
+	get '/areas/:id/interviews' do
+		Interview.find_by(params[:id]).to_json
+	end
+
+	#Retreives the roles of the specified the user
+	get '/areas/users/:id/roles' do
+		user = User.find(:id)
+		user.roles.to_json
+	end
+	
+	#destroys a specific houehold belonging to specific user
+	delete '/areas/users/:id/households/:household_id' do
+		user = User.find(params[:id])
+		household = user.housholds.where(id: :household_id)
+		household.save    
+	end
+	
+	#UPDATES a specified users roles
+	put '/areas/users/:id/roles' do
+		user = User.find(params[:id])
+		role = user.roles
+		role.update(:role)
+		role.save
+	end
