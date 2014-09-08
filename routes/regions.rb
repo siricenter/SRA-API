@@ -1,7 +1,7 @@
 module Sinatra
     module API
         module Routing
-            module Roles
+            module Regions
             
                 def self.registered(app)
                 
