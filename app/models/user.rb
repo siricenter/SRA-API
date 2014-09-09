@@ -23,10 +23,10 @@
 #
 
 class User < ActiveRecord::Base
-    has_many :areas, through: :area_relationships 
+    has_many :areas, through: :areas_users
 	has_and_belongs_to_many :roles
 
-    has_many :area_relationships
+    has_many :areas_users
 	has_many :events
 	has_many :households
 	has_many :tokens
