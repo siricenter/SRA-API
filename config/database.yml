@@ -1,10 +1,12 @@
 development:
+    host: localhost
     adapter: postgresql
     database: api_development
     pool: 5
     socket: /var/run/postgresql
 
 test:
+    host: localhost
     adapter: postgresql
     database: api_test
     pool: 5
