@@ -14,10 +14,18 @@ class API < Sinatra::Base
 	use Rack::Session::Cookie
     
     register Sinatra::API::Routing::Areas
+    register Sinatra::API::Routing::AreasUsers
+    register Sinatra::API::Routing::ConsumedFoods
+    register Sinatra::API::Routing::Events
+    register Sinatra::API::Routing::FamilyRelationships
     register Sinatra::API::Routing::Households
     register Sinatra::API::Routing::Interviews
+    register Sinatra::API::Routing::Jobs
+    register Sinatra::API::Routing::Occupations
+    register Sinatra::API::Routing::People
     register Sinatra::API::Routing::Regions
     register Sinatra::API::Routing::Roles
+    register Sinatra::API::Routing::RolesUsers
     register Sinatra::API::Routing::Sessions
     register Sinatra::API::Routing::Users
 
