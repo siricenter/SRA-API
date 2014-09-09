@@ -6,5 +6,6 @@ FactoryGirl.define do
 		education_level "some college"
 		gender "male"
 		in_school true
+        household
 	end
 end
