@@ -57,12 +57,13 @@
 	
     
 
-    
+    *
     #Retreives all the households within a specific area.
 	get '/areas/:id/households' do
 		Household.find_by(params[:id]).to_json
 	end
-
+    
+	
     #Create a household within an area
     app.post '/areas/:id/households' do
         area = Area.find(params[:id])

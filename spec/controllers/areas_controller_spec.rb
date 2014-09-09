@@ -3,12 +3,14 @@ describe 'Areas' do
 	context '/areas' do
 		it "returns a stringified array of all areas the user can see" do
 			area = FactoryGirl.create(:area)
+            household = FactoryGirl.create(:household, {area: area})
 			get '/areas'
 			json = last_response.body
 			areas = JSON.parse(json)
-			expect(areas.count).to eq(1)
+            expect(areas.count).to eq(1)
 			expect(areas.first['id']).to eq(area.id)
 			expect(areas.first['name']).to eq(area.name)
+            expect(areas.first[:households].count).to eq(1)
 		end
 
 		it "creates a new area" do

@@ -1,6 +1,6 @@
 FactoryGirl.define do
 	factory :household do
 		name 'Rodriguez'
-		area
+        area
 	end
 end

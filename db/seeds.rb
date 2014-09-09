@@ -27,6 +27,11 @@ Role.create(name: "field worker")
 #	{name: "Edit Household"}])
 
 
+kyiv = Area.create(name: 'Kyiv')
+household = Household.create(name: 'Ivanovich')
+household.area = kyiv
+household.save
+
 
 
 

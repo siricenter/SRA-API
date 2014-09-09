@@ -7,8 +7,10 @@ module Sinatra
                     
                     #Retreives all the areas
                     app.get '/areas' do 
-                        areas = Area.all
-                        areas.to_json
+                        areas = Area.all.as_json(inlcude: [:households]).to_json
+                        #areas.each do | area |
+                        #    area.households = Household.where(area_id: area.id)
+                        #end
                     end
                 
                     #Create a new Area
