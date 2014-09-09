@@ -26,15 +26,6 @@ Role.create(name: "field worker")
 #	{name: "Create Household"}, 
 #	{name: "Edit Household"}])
 
-
-kyiv = Area.create(name: 'Kyiv')
-household = Household.create(name: 'Ivanovich')
-household.area = kyiv
-household.save
-
-
-
-
 #field_worker = Role.find_by_name("Field Worker")
 #field_worker.permissions << Permission.find_by_name("Create Household")
 #field_worker.permissions << Permission.find_by_name("Edit Household")
