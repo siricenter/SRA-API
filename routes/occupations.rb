@@ -4,9 +4,46 @@ module Sinatra
             module Occupations
             
                 def self.registered(app)
-                    
+					app.get "/occupations" do
+						occupations = Occupation.all
+						occupations.to_json
+						
+					end
+					
+					app.get "/occupations/:id" do
+						occupation = Occupation.find(params[:id])
+						occupation.to_json
+					end
+					
+					app.delete "/occupations/:id" do
+						occupation = Occupation.find(params[:id])
+						occupation.delete
+						if occupation.delete
+							return 200
+						else
+							return 403
+						end
+					end
+					app.post "/occupations" do
+						occupation = Occupation.new(params[:occupation])
+						occupation.save
+						if occupation.save
+							return 200
+						else
+							return 400
+						end
+					end
+					app.put "/occupations/:id" do
+						occupation = Occupation.find(params[:id])
+						occupation = params[:occupation]
+						occupation.save
+						if occupation.save
+							return 200
+						else
+							return 403
+						end
+					end
                 end
-            
             end
         end
     end
