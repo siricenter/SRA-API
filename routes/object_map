@@ -1,5 +1,5 @@
 area
-	area_relationships
+	areas_users
     	users
 	areas_regions
     	regions
@@ -21,7 +21,7 @@ interviews
 regions
 	areas_regions
         area
-            area_relationships
+            areas_users
                 users
             households
                 interviews
@@ -34,7 +34,7 @@ roles
     	permissions
     roles_users
         users
-            area_relationships
+            areas_users
                 area
                     areas_regions
                         regions
@@ -49,7 +49,7 @@ roles
 sessions
 
 users
-	area_relationships
+	areas_users
     	area
             areas_regions
                 regions
