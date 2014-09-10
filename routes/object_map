@@ -1,0 +1,66 @@
+area
+	area_relationships
+    	users
+	areas_regions
+    	regions
+	households
+        interviews
+        	consumed_foods
+    	people
+        	jobs
+
+households
+        interviews
+        	consumed_foods
+    	people
+        	jobs
+
+interviews
+	consumed_foods
+
+regions
+	areas_regions
+        area
+            area_relationships
+                users
+            households
+                interviews
+                    consumed_foods
+                people
+                    jobs
+
+roles
+	permissions_roles
+    	permissions
+    roles_users
+        users
+            area_relationships
+                area
+                    areas_regions
+                        regions
+                    households
+                        interviews
+                            consumed_foods
+                        people
+                            jobs
+            events
+            tokens
+
+sessions
+
+users
+	area_relationships
+    	area
+            areas_regions
+                regions
+            households
+                interviews
+                    consumed_foods
+                people
+                    jobs
+    events
+    roles_users
+        roles
+            permissions_roles
+                permissions
+    tokens
