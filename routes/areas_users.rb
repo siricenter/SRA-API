@@ -9,7 +9,7 @@ module Sinatra
 						area = Area.find(params[:area_id])
 						user = User.find(params[:user_id])
         				relationship = params[:relationship]
-						area_user = AreaRelationship.new
+						area_user = AreasUsers.new
         				area_user.area = area
        					area_user.user = user
        					area_user.relationship = relationship
@@ -18,6 +18,7 @@ module Sinatra
 							return 200
 						else
 							return 403
+						end
 					end
 						#Deletes a relationship
 					app.delete '/areas/:area_id/users/:user_id' do
@@ -28,10 +29,11 @@ module Sinatra
 								return 200
 							else
 								return 403
-						end
+							end
+					end
                 end
-            
             end
         end
     end
-end
+end 
+                
