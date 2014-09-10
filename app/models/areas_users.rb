@@ -8,7 +8,7 @@
 #  relationship :string(255)
 #
 
-class AreaRelationship < ActiveRecord::Base
+class AreasUsers < ActiveRecord::Base
     belongs_to :area
     belongs_to :user
 end
