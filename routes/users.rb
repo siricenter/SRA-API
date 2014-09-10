@@ -29,9 +29,7 @@ module Sinatra
                     app.delete '/users/:id' do
                         User.find(params[:id]).destroy
                     end
-                    
                 end
-            
             end
         end
     end

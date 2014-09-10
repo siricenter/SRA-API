@@ -41,10 +41,8 @@ module Sinatra
                         if event.user == current_user
                         	event.destroy
                         end
-                    end
-                    
+                    end 
                 end
-            
             end
         end
     end

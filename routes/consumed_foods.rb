@@ -4,9 +4,8 @@ module Sinatra
             module ConsumedFoods
             
                 def self.registered(app)
-                    
+					
                 end
-            
             end
         end
     end
