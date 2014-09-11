@@ -3,5 +3,6 @@ FactoryGirl.define do
 		n_id "513fceb575b8dbbc21001506"
 		servings 3
 		frequency 'daily'
+        interview
 	end
 end

@@ -9,7 +9,8 @@ describe 'Areas' do
             areas_regions = FactoryGirl.create(:areas_regions, {area: area, region: region})
             household = FactoryGirl.create(:household, {area: area})
             person = FactoryGirl.create(:person, {household: household})
-            jobs = FactoryGirl.create(:job, {person: person})
+            occupation = FactoryGirl.create(:occupation)
+            jobs = FactoryGirl.create(:job, {person: person, occupation: occupation})
             interview = FactoryGirl.create(:interview, {household: household})
             consumed_food = FactoryGirl.create(:consumed_food, {interview: interview})
             
