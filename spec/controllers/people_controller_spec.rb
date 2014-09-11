@@ -13,7 +13,7 @@ describe 'People' do
 
 		it "creates a new person_js" do
 			expect {
-				post '/person', {person: {id: 1}}
+				post '/people', {person: {id: 1}}
 				}.to change(Person, :count).by(1)
 		end
 		
@@ -34,5 +34,5 @@ describe 'People' do
 			expect(person[:education_level]).to eq('None')
 			expect(person[:gender]).to eq('female')
 		end
-
 	end
+end
