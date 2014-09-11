@@ -6,6 +6,6 @@
 FactoryGirl.define do
 	factory :areas_regions do
     	area
-    	region_id
+    	region
 	end
 end
