@@ -4,7 +4,7 @@
 
 
 FactoryGirl.define do
-	factory :areas_regions do
+	factory :areas_region do
     	area
     	region
 	end

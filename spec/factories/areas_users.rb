@@ -5,7 +5,7 @@
 
 
 FactoryGirl.define do
-	factory :areas_users do
+	factory :areas_user do
     	area
     	user
     	relationship "Lives there"
