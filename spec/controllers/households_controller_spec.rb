@@ -4,7 +4,7 @@ describe 'Households' do
 		it "returns a stringified array of all households" do
 			household = FactoryGirl.create(:household)
 			interview = FactoryGirl.create(:interview, {household: household})
-			consumed_foods = FactoryGirl.create(:consumed_foods, {interview: interview})
+			consumed_foods = FactoryGirl.create(:consumed_food, {interview: interview})
 			person = FactoryGirl.create(:person, {household: household})
 			jobs = FactoryGirl.create(:job, {person: person})
 			
