@@ -3,11 +3,14 @@ describe 'Interviews' do
 	context '/interviews' do
 		it "returns a stringified array of all interviews the user can see" do
 			interview = FactoryGirl.create(:interview)
-			get '/interviews'
+            consumed_food = FactoryGirl.create(:consumed_food, {interview: interview})
+			
+            get '/interviews'
 			json = last_response.body
 			interviews = JSON.parse(json)
-			retrieved_interview = Interview.new(interviews.first)
-			expect(retrieved_interview).to eq(interview)
+			expect(interviews.count).to eq(1)
+            expect(interviews.first['id']).to eq(interview.id)
+            expect(interviews.first['consumed_food']).to eq(1)
 		end
 
 		it "creates a new interview" do
@@ -23,8 +26,8 @@ describe 'Interviews' do
 			interview = FactoryGirl.create(:interview)
 			get "/interviews/#{interview.to_param}",{interviews:{id: 1}}
 			json = last_response.body
-			retrieved_interview = Interview.new(JSON.parse(json))
-			expect(retrieved_interview).to eq(interview)
+            interview_hash = JSON.parse(json)
+            expect(interview_hash['roof']).to eq(interview.roof)
 		end
 
         it "should update an existing interview" do
@@ -36,10 +39,8 @@ describe 'Interviews' do
 
 		it "should delete a interview" do
 			interview = FactoryGirl.create(:interview)
-
-			expect {
-				delete "/interviews/#{interview.to_param}", {interview: {id: 1}}
-			}.to change(Interview, :count).by(-1)
+			delete "/interviews/#{interview.to_param}"
+            expect(Interview.exists?(interview.to_param)).to be false
 		end
 	end
 end
