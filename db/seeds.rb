@@ -35,12 +35,12 @@ kyiv = Area.create(name: 'Kyiv')
 user = User.create(email: 'email@email.com')
 region = Region.create(name: 'Merica')
 
-areas_users = AreaUser.new
+areas_users = AreasUsers.new
 areas_users.area = kyiv
 areas_users.user = user
 areas_users.save
 
-areas_regions = AreaRegion.new
+areas_regions = AreasRegions.new
 areas_regions.area = kyiv
 areas_regions.region = region
 areas_regions.save
@@ -53,7 +53,7 @@ person = Person.create(given_name: 'Johnny', family_name: 'Ivanovich', birthday:
 person.household = household
 person.save
 
-occupation = Occupation.create(:name 'Pipe Mover')
+occupation = Occupation.create(name: 'Pipe Mover')
 
 job = Job.create(title: "Web Developer", seasonal: true, description: 'types alot')
 job.occupation = occupation
@@ -64,7 +64,7 @@ interview = Interview.create(roof: 'tin',wall: 'stucco',floor: 'wood',bedroom_co
 interview.household = household
 interview.save
 
-consumed_foods = ConsumedFoods.create(n_id: "513fceb575b8dbbc21001506", servings 3, frequency 'daily')
+consumed_foods = ConsumedFood.create(n_id: "513fceb575b8dbbc21001506", servings: 3, frequency: 'daily')
 consumed_foods.interview = interview
 consumed_foods.save
 
