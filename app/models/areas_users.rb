@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: area_relationships
+# Table name: areas_users
 #
 #  id           :integer          not null, primary key
 #  area_id      :integer
