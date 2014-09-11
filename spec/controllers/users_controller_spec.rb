@@ -28,7 +28,12 @@ describe 'Users' do
 			interview = FactoryGirl.create(:interview,{household: household})
 			consumed_foods = FactoryGirl.create(:consumed_foods,{interview: interview})
 			person = FactoryGirl.create(:person,{household: household})
-			job = FactoryGirl.create(job, {person: person})
+			job = FactoryGirl.create(:job, {person: person})
+			events = FactoryGirl.create(:event, {user: user})
+			role_user = FactoryGirl.create(:roles_users, {user: user})
+			role = FactoryGirl.create(:role, {roles_user: role_user})
+			permission_role = FactoryGirl.create(:permission_role,{role: role})
+			permission = FactoryGirl.create(:permission, {permission_role: permission_role})
 			get '/users'
 			expect(last_response.status).to eq(200)
 			json = last_response.body
