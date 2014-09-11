@@ -20,6 +20,7 @@ module Sinatra
 							return 403
 						end
 					end
+					
 						#Deletes a relationship
 					app.delete '/areas/:area_id/users/:user_id' do
 						area = Area.find(params[:area_id])
@@ -31,6 +32,7 @@ module Sinatra
 								return 403
 							end
 					end
+					
                 end
             end
         end

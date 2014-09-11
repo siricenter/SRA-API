@@ -3,6 +3,11 @@ describe 'Households' do
 	context '/households' do
 		it "returns a stringified array of all households" do
 			household = FactoryGirl.create(:household)
+			interview = FactoryGirl.create(:interview, {household: household})
+			consumed_foods = FactoryGirl.create(:consumed_foods, {interview: interview})
+			person = FactoryGirl.create(:person, {household: household})
+			jobs = FactoryGirl.create(:job, {person: person})
+			
 			get '/households'
 			json = last_response.body
 			households = JSON.parse(json)
