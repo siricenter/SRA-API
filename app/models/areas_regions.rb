@@ -7,7 +7,7 @@
 #  region_id    :integer
 #
 
-class AreasRegions < ActiveRecord::Base
+class AreasRegion < ActiveRecord::Base
     belongs_to :area
     belongs_to :region
 end
