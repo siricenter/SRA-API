@@ -10,9 +10,10 @@
 
 class Area < ActiveRecord::Base
   has_many :users, through: :areas_users
+  has_and_belongs_to_many :regions, through: :areas_regions
   has_many :areas_users
+  has_many :areas_regions
   has_many :households
-  has_and_belongs_to_many :regions
 
   validates :name, presence: true
 end
