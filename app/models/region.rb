@@ -10,6 +10,6 @@
 
 class Region < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
-
-  has_and_belongs_to_many :areas
+  has_and_belongs_to_many :areas, through: :areas_regions
+  has many :areas_regions
 end
