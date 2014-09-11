@@ -14,6 +14,10 @@ describe 'Households' do
 			expect(households.count).to eq(1)
 			expect(households.first['id']).to eq(household.id)
 			expect(households.first['name']).to eq(household.name)
+			expect(households.first['interview']).to eq(1)
+			expect(households.first['interview'].first['consumed_foods'].to eq(1))
+			expect(households.first['person']).to eq(1)
+			expect(households.first['person'].first['job']).to eq(1)
 		end
 
 		it "creates a new household" do
