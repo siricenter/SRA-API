@@ -1,15 +1,48 @@
 describe 'Users' do
 	include RspecMixin
+	users
+	areas_users
+    	area
+            areas_regions
+                regions
+            households
+                interviews
+                    consumed_foods
+                people
+                    jobs
+    events
+    roles_users
+        roles
+            permissions_roles
+                permissions
+    tokens
+	
 	context '/users' do
 		it "returns a stringified array of all users the administrator can see" do
 			user = FactoryGirl.create(:user)
+			area_user = FactoryGirl.create(:areas_users, {user: user})
+			area = FactoryGirl.create(:area,{areas_users: areas_users})
+			area_region = FactoryGirl.create(:areas_regions,{area: area})
+			region = FactoryGirl.create(:region,{area_region: area_region})
+			household = FactoryGirl.create(:household,{area: area})
+			interview = FactoryGirl.create(:interview,{household: household})
+			consumed_foods = FactoryGirl.create(:consumed_foods,{interview: interview})
+			person = FactoryGirl.create(:person,{household: household})
+			job = FactoryGirl.create(job, {person: person})
 			get '/users'
 			expect(last_response.status).to eq(200)
-
 			json = last_response.body
 			users_list = JSON.parse(json)
 			expect(users_list.count).to eq(1)
 			expect(User.new(users_list.first)).to eq(user)
+			expect(user_list.first['area_user'].first['area']).to eq(area)
+			expect(user_list.first['area']).to eq(area)
+			expect(user_list.first['area_region'].first['region']).to eq(area)
+			expect(user_list.first['household']).to eq(household)
+			expect(user.list.first['interview'].count).to eq(1)
+			expect(user.list.first['consumed_foods']).to eq(consumed_foods)
+			expect(user_list.first['person']).to eq(person)
+			expect(user_list.first['job']).to eq(job)			
 		end
 
 		it "creates a new User" do
