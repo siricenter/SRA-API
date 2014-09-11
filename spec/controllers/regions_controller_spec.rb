@@ -3,12 +3,31 @@ describe 'Regions' do
 	context '/regions' do
 		it 'returns a stringified list of all regions' do
 			region = FactoryGirl.create(:region)
-			get '/regions'
+            user = FactoryGirl.create(:user)
+            area = FactoryGirl.create(:area)
+            areas_regions = FactoryGirl.create(:areas_regions, {area: area, region: region})
+            areas_users = FactoryGirl.create(:areas_users, {area: area, user: user})
+            household = FactoryGirl.create(:household, {area: area})
+            person = FactoryGirl.create(:person, {household: household})
+            jobs = FactoryGirl.create(:job, {person: person})
+            interview = FactoryGirl.create(:interview, {household: household})
+            consumed_food = FactoryGirl.create(:consumed_food, {interview: interview})
+			
+            get '/regions'
 			expect(last_response.status).to eq(200)
 
 			json = last_response.body
 			regions = JSON.parse(json)
 			expect(regions.count).to eq(1)
+
+            expect(region.first['areas_regions'].count).to eq(1)
+            expect(region.first['areas_regions'].first['areas'].count).to eq(1)
+            expect(region.first['areas_regions'].first['areas'].first['areas_users'].first['users'].count).to eq(1)
+            expect(region.first['areas_regions'].first['areas'].first['households'].count).to eq(1)
+            expect(region.first['areas_regions'].first['areas'].first['households'].first['interviews'].count).to eq(1)
+            expect(region.first['areas_regions'].first['areas'].first['households'].first['people'].count).to eq(1)
+            expect(region.first['areas_regions'].first['areas'].first['households'].first['interviews'].first['consumed_foods'].count).to eq(1)
+            expect(region.first['areas_regions'].first['areas'].first['households'].first['people'].first['jobs'].count).to eq(1)
 
 			region1 = Region.new(regions.first)
 			expect(region1).to eq(region)
