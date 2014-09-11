@@ -1,22 +1,6 @@
 describe 'Users' do
 	include RspecMixin
-	users
-	areas_users
-    	area
-            areas_regions
-                regions
-            households
-                interviews
-                    consumed_foods
-                people
-                    jobs
-    events
-    roles_users
-        roles
-            permissions_roles
-                permissions
-    tokens
-	
+
 	context '/users' do
 		it "returns a stringified array of all users the administrator can see" do
 			user = FactoryGirl.create(:user)
