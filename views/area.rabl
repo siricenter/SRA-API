@@ -1,10 +1,10 @@
 object @area
-attributes :id, :name
+attributes, :object_root => false :id, :name
 
-child :regions do
+child :regions,:object_root => false do
 	attributes :name
 end
 
-child :users do
+child :users,:object_root => false do
 	attributes :email
 end
