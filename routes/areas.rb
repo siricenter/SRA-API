@@ -19,7 +19,8 @@ module Sinatra
 
                     #Retreive an area
                     app.get '/areas/:id' do
-                        Area.find(params[:id]).to_json
+                        @area = Area.find(params[:id])
+						rabl :area, format: :json
                     end
 
                     #Updates an area
