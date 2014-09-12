@@ -10,13 +10,12 @@ describe 'Occupations' do
 			expect(occupations.count).to eq(1)
             expect(occupations.first['id']).to eq(occupation.id)
 			expect(occupations.first['name']).to eq(occupation.name)
-            expect(occupations.first['job'].count).to eq(1)
+            expect(occupations.first['jobs'].count).to eq(1)
 		end
 
 		it "creates a new occupation" do
-			expect {
-				post '/occupations', {occupation: {id: 1}}
-			}.to change(Occupation, :count).by(1)
+			post '/occupations', {:occupation => {:id => 1, :name => "Garbage Man"}}
+			expect(Occupation.count).to eq(1)
 		end
 
 	end
@@ -32,9 +31,9 @@ describe 'Occupations' do
 
         it "should update an existing occupation" do
 			occupation = FactoryGirl.create(:occupation)
-            put "/occupations/#{occupation.to_param}",{occupation:{name: 'wood'}}
+            put"/occupations/#{occupation.to_param}", {:occupation => {:name => 'wood'}}
 			occupation.reload
-            expect(occupation.name).to eq("wood")
+            expect(occupation.name).to eq('wood')
 		end
 
 		it "should delete a occupation" do

@@ -6,7 +6,7 @@ module Sinatra
                 def self.registered(app)
 					#returns all the occupations currently existing in Database 
 					app.get "/occupations" do
-						occupations = Occupation.all
+						occupations = Occupation.all.as_json(include: :jobs)
 						occupations.to_json
 						
 					end
@@ -39,8 +39,8 @@ module Sinatra
 					app.put "/occupations/:id" do
 						occupation = Occupation.find(params[:id])
 						occupation = params[:occupation]
-						occupation.save
-						if occupation.save
+						occupation.reload
+						if occupation.reload
 							return 200
 						else
 							return 403
