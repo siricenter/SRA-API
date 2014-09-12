@@ -9,7 +9,7 @@ module Sinatra
                     app.post '/areas/:area_id/regions/:region_id' do
 						area = Area.find(params[:area_id])
                         region = Region.find(params[:region_id])
-                        area_region = AreasRegions.new
+                        area_region = AreasRegion.new
         				area_region.area = area
                         area_region.region = region
 						area_region.save

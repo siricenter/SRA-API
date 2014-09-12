@@ -9,7 +9,7 @@ module Sinatra
 						area = Area.find(params[:area_id])
 						user = User.find(params[:user_id])
         				relationship = params[:relationship]
-						area_user = AreasUsers.new
+						area_user = AreasUser.new
         				area_user.area = area
        					area_user.user = user
        					area_user.relationship = relationship
