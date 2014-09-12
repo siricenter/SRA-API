@@ -4,6 +4,8 @@ UUID.generator.next_sequence
 
 require 'sinatra/activerecord'
 require 'sinatra/base'
+require 'rabl'
+Rabl.register!
 
 Dir["#{File.dirname(__FILE__)}/app/models/*.rb"].each {|file| require file}
 Dir["#{File.dirname(__FILE__)}/routes/*.rb"].each {|file| require_relative file}

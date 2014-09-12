@@ -6,6 +6,7 @@ gem "pg"
 gem 'bcrypt'
 gem 'rack'
 gem 'uuid'
+gem 'rabl'
 
 # Testing Gems
 gem 'database_cleaner', group: [:test]
