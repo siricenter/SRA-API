@@ -38,7 +38,7 @@ module Sinatra
 					#updates an occupation
 					app.put "/occupations/:id" do
 						occupation = Occupation.find(params[:id])
-						occupation = params[:occupation]
+						occupation.update(params[:occupation])
 						occupation.reload
 						if occupation.reload
 							return 200
