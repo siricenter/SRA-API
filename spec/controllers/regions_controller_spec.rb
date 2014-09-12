@@ -5,8 +5,7 @@ describe 'Regions' do
 			region = FactoryGirl.create(:region)
             user = FactoryGirl.create(:user)
             area = FactoryGirl.create(:area)
-            areas_regions = FactoryGirl.create(:areas_regions, {area: area, region: region})
-            areas_users = FactoryGirl.create(:areas_users, {area: area, user: user})
+            areas_regions = FactoryGirl.create(:areas_region, {area: area, region: region})
             household = FactoryGirl.create(:household, {area: area})
             person = FactoryGirl.create(:person, {household: household})
             jobs = FactoryGirl.create(:job, {person: person})
@@ -20,17 +19,11 @@ describe 'Regions' do
 			regions = JSON.parse(json)
 			expect(regions.count).to eq(1)
 
-            expect(region.first['areas_regions'].count).to eq(1)
-            expect(region.first['areas_regions'].first['areas'].count).to eq(1)
-            expect(region.first['areas_regions'].first['areas'].first['areas_users'].first['users'].count).to eq(1)
-            expect(region.first['areas_regions'].first['areas'].first['households'].count).to eq(1)
-            expect(region.first['areas_regions'].first['areas'].first['households'].first['interviews'].count).to eq(1)
-            expect(region.first['areas_regions'].first['areas'].first['households'].first['people'].count).to eq(1)
-            expect(region.first['areas_regions'].first['areas'].first['households'].first['interviews'].first['consumed_foods'].count).to eq(1)
-            expect(region.first['areas_regions'].first['areas'].first['households'].first['people'].first['jobs'].count).to eq(1)
-
-			region1 = Region.new(regions.first)
-			expect(region1).to eq(region)
+            expect(regions.first['areas'].count).to eq(1)
+            expect(regions.first['areas'].first['households'].count).to eq(1)
+            expect(regions.first['areas'].first['households'].first['people'].count).to eq(1)
+            expect(regions.first['areas'].first['households'].first['interview']['consumed_foods'].count).to eq(1)
+            expect(regions.first['areas'].first['households'].first['people'].first['jobs'].count).to eq(1)
 		end
 
 		it 'creates a new region' do
