@@ -7,7 +7,7 @@ module Sinatra
                     
                     #Retreives all the people 
                     app.get '/people' do
-                        Person.all.to_json
+						Person.all.as_json(include: :jobs).to_json
                     end
                     
                     #Create a person

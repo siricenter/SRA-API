@@ -7,8 +7,8 @@ describe 'People' do
 			get '/people'
 			json = last_response.body
 			person_js = JSON.parse(json)
-			expect(person_js).to eq(person)	
-			expect(person_js.first['job']).to eq(job)
+			expect(person_js.first['given_name']).to eq(person.given_name)	
+			expect(person_js.first['jobs'].first['title']).to eq(job.title)
 		end
 
 		it "creates a new person_js" do
