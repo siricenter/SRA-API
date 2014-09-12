@@ -7,7 +7,7 @@ module Sinatra
                 
                     #Retreives all regions
                     app.get '/regions' do
-                        Region.all.to_json
+                        areas = Region.all.as_json(include: {:areas => {include: {:households => {include: [{:people => {include: :jobs}},{:interview => {include: :consumed_foods}}]}}}}).to_json
                     end
                     
                     #Create a region

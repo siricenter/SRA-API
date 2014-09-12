@@ -7,9 +7,7 @@ module Sinatra
                     
                     #Retreives all the areas
                     app.get '/areas' do 
-                        #areas = Area.all.as_json(include: {:households => {include: :people}}).to_json
 						areas = Area.all.as_json(include: [{:households => {include: [{:people => {include: :jobs}},{:interview => {include: :consumed_foods}}]}}, :areas_users, :users, :regions]).to_json
-						#areas = Area.all.as_json(include: {households: [:people, :interviews]}).to_json
                     end
                 
                     #Create a new Area
