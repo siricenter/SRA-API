@@ -7,7 +7,7 @@ module Sinatra
                     
                     #Retreives all interviews
                     app.get '/interviews' do
-                        Interview.all.to_json
+						Interview.all.as_json(include: :consumed_foods).to_json
                     end
 
                     #Create an interview

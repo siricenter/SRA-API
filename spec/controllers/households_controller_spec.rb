@@ -11,13 +11,11 @@ describe 'Households' do
 			get '/households'
 			json = last_response.body
 			households = JSON.parse(json)
-			expect(households.count).to eq(1)
 			expect(households.first['id']).to eq(household.id)
 			expect(households.first['name']).to eq(household.name)
-			expect(households.first['interview']).to eq(1)
-			expect(households.first['interview'].first['consumed_foods'].to eq(1))
-			expect(households.first['person']).to eq(1)
-			expect(households.first['person'].first['job']).to eq(1)
+			expect(households.first['interview']['consumed_foods'].count).to eq(1)
+			expect(households.first['people'].count).to eq(1)
+			expect(households.first['people'].first['jobs'].count).to eq(1)
 		end
 
 		it "creates a new household" do
