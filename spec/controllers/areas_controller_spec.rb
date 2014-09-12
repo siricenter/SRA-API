@@ -43,7 +43,7 @@ describe 'Areas' do
 			get "/areas/#{area.to_param}"
 			json = last_response.body
 			area_hash = JSON.parse(json)
-			expect(area_hash['name']).to eq(area.name)
+			expect(area_hash['area']['name']).to eq(area.name)
 		end
 
 		it "should update a previously created area" do
