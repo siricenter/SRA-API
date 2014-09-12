@@ -7,14 +7,15 @@ describe 'People' do
 			get '/people'
 			json = last_response.body
 			person_js = JSON.parse(json)
-			expect(person_js.first['given_name']).to eq(person.given_name)	
-			expect(person_js.first['jobs'].first['title']).to eq(job.title)
+			expect(person_js.first['person']['given_name']).to eq(person.given_name)	
+			expect(person_js.first['person']['jobs'].first['title']).to eq(job.title)
 		end
-
+#Birthday can't be blank, Education level can't be blank, Family name can't be blank, Gender can't be blank, Given name can't be blank
 		it "creates a new person_js" do
+			household = FactoryGirl.create(:household)
 			expect {
-				post '/people', {person: {id: 1}}
-				}.to change(Person, :count).by(1)
+				post "/households/#{household.to_param}/people", {person: {id: 4000, birthday: Time.now, education_level: 'Some college', family_name:'Pitt', gender:'Male', given_name:'Brad'}}
+				}.to change(household.people, :count).by(1)
 		end
 		
 		it "deletes a person" do
@@ -22,13 +23,12 @@ describe 'People' do
 			person.save
 			delete "/people/#{person.to_param}"
 			person.destroy
-			expect(person.count).to eq(0)
+			expect(Person.count).to eq(0)
 		end
 		it 'updates a person' do
 			person = FactoryGirl.create(:person)
-			put "/people/#{person.to_param}"
-			person = params[:person => {give_name: 'Willy', family_name: 'Wonka',education_level: 'None', gender: 'female'}]
-			person.save
+			put "/people/#{person.to_param}", {:person => {give_name: 'Willy', family_name: 'Wonka',education_level: 'None', gender: 'female'}}
+			person.reload
 			expect(person[:given_name]).to eq('Willy')
 			expect(person[:family_name]).to eq('Wonka')
 			expect(person[:education_level]).to eq('None')

@@ -28,9 +28,7 @@ module Sinatra
                     #Updates a person
                     app.put '/people/:id' do
                         person = Person.find(params[:id])
-                        person.attributes = params[:person].except("family_relationship")
-                        relationship = FamilyRelationship.find_by_name(params[:person][:family_relationship])
-                        person.family_relationship = relationship
+						person.attributes.update(params[:person])
                         person.save!
                     end
                     
