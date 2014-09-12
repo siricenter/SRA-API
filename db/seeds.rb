@@ -35,12 +35,12 @@ kyiv = Area.create(name: 'Kyiv')
 user = User.create(email: 'email@email.com')
 region = Region.create(name: 'Merica')
 
-areas_users = AreasUsers.new
+areas_users = AreasUser.new
 areas_users.area = kyiv
 areas_users.user = user
 areas_users.save
 
-areas_regions = AreasRegions.new
+areas_regions = AreasRegion.new
 areas_regions.area = kyiv
 areas_regions.region = region
 areas_regions.save
