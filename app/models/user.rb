@@ -24,6 +24,7 @@
 
 class User < ActiveRecord::Base
     has_many :areas, through: :areas_users
+	has_many :areas_users
 	has_and_belongs_to_many :roles
 
     has_many :areas_users
@@ -35,5 +36,9 @@ class User < ActiveRecord::Base
         roles = self.roles.where(name: role_name.to_s)
 		return false if roles.empty?
 		return true
+	end
+
+	def area_role area
+		self.areas_users.where(area: area).first.relationship
 	end
 end

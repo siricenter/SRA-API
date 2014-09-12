@@ -29,4 +29,15 @@ describe User do
 	it "should have a valid factory" do
 		expect(subject).to be_valid
 	end
+
+	it 'returns the relationship to an area' do
+		area = FactoryGirl.create(:area)
+		relationship = AreasUser.new
+		relationship.area = area
+		relationship.user = subject
+		relationship.relationship = 'Manager'
+		relationship.save!
+		
+		expect(subject.area_role(area)).to eq('Manager')
+	end
 end
