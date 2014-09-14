@@ -7,7 +7,8 @@ module Sinatra
                 
                     #Retreives all roles
                     app.get '/roles' do
-                        Role.all.to_json
+						@role = Role.all
+						rabl :roles, format: :json
                     end
 
                     #Create a role
@@ -17,7 +18,8 @@ module Sinatra
 
                     #Retreive a role
                     app.get '/roles/:id' do
-                        Role.find(params[:id]).to_json
+						@role = Role.find(params[:id])
+						rabl :role, format: :json
                     end
 
                     #Update a role
