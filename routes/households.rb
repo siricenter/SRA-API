@@ -8,7 +8,7 @@ module Sinatra
                     #Retreive all households
                     app.get '/households' do
 						@household = Household.all #as_json(include:[{:people => {include: :jobs}},{:interview => {include: :consumed_foods}}]).to_json
-						rabl :household, format: :json
+						rabl :households, format: :json
 					end
 
                     #Create a Household

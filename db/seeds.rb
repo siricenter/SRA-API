@@ -40,12 +40,16 @@ areas_users.area = kyiv
 areas_users.user = user
 areas_users.save
 
+#role = Role.create(name: "field worker")
+#user.roles = role
+#role.save
+
 areas_regions = AreasRegion.new
 areas_regions.area = kyiv
 areas_regions.region = region
 areas_regions.save
 
-household = Household.create(name: 'Ivanovich')
+household = Household.create(id: 1, name: 'Ivanovich')
 household.area = kyiv
 household.save
 
@@ -97,3 +101,4 @@ occupations = [
 ]
 
 Occupation.create(occupations)
+
