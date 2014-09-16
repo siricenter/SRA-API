@@ -1,7 +1,7 @@
 object @person
 attributes :id, :given_name
 
-child :jobs, :object_root => false do
+child :job, :object_root => false do
 	attributes :title
 end
 

@@ -1,10 +1,11 @@
 object @households
 attributes :id, :name, :object_root => false
 
-child :people, :object_root => false do
-	attributes :given_name, family_name
+child :people do
+    attributes :id, :given_name, :family_name
+
+    child :jobs do 
+        attributes :title
+    end
 end
 
-child :jobs, :object_root => false do
-	attributes :name
-end

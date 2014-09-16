@@ -9,3 +9,13 @@ child :people do
     end
 end
 
+child :interview do
+	attributes :id
+	
+	child :consumed_foods do
+		attributes :n_id, :servings, :frequency
+	end
+end
+
+
+

@@ -27,7 +27,7 @@ describe 'People' do
 		end
 		it 'updates a person' do
 			person = FactoryGirl.create(:person)
-			put "/people/#{person.to_param}", {:person => {give_name: 'Willy', family_name: 'Wonka',education_level: 'None', gender: 'female'}}
+			put"/people/#{person.to_param}", {:person => {:given_name => 'Willy', :family_name => 'Wonka', :education_level => 'None', :gender => 'female'}}
 			person.reload
 			expect(person[:given_name]).to eq('Willy')
 			expect(person[:family_name]).to eq('Wonka')
