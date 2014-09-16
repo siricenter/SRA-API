@@ -6,9 +6,9 @@ describe 'People' do
 			job = FactoryGirl.create(:job, {person: person})
 			get '/people'
 			json = last_response.body
-			person_js = JSON.parse(json)
-			expect(person_js.first['person']['given_name']).to eq(person.given_name)	
-			expect(person_js.first['person']['jobs'].first['title']).to eq(job.title)
+            people = JSON.parse(json)
+            expect(people.first['person']['given_name']).to eq(person.given_name)	
+            expect(people.first['person']['jobs'].first['title']).to eq(job.title)
 		end
 #Birthday can't be blank, Education level can't be blank, Family name can't be blank, Gender can't be blank, Given name can't be blank
 		it "creates a new person_js" do
