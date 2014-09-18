@@ -19,7 +19,8 @@ module Sinatra
                     
                     #Retreive a region
                     app.get '/regions/:id' do
-						@region = Region.find(params[:id]).to_json
+						@region = Region.find(params[:id])#.to_json
+						rabl :region, format: :json
                     end
                     
                     #Update a Region
