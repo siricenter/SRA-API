@@ -1,11 +1,11 @@
-object @roles
+collection @roles
 attributes *Role.column_names - ["created_at", "updated_at"], :object_root => false 
 
 
 child :users, :object_root => false do
 	attributes *User.column_names - ["created_at", "updated_at"], :object_root => false 
 	
-	child :area, :object_root => false do
+	child :areas, :object_root => false do
 	attributes *Area.column_names - ["interview", "created_at", "updated_at"], :object_root => false
 	
 		child :households, :object_root => false do
