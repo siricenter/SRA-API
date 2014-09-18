@@ -6,19 +6,19 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'E
 #   manuel', city: cities.first)
-Role.create(name: "public")
+public_role = Role.create(name: "public")
 
 #admin_role = Role.create(name: "admin")
 #admin = User.new({email: "admin@admin.com", password: "abc123456", password_confirmation: "abc123456"})
 #admin.roles << admin_role
 #admin.save
 
-Role.create(name: "manager")
+manager_role = Role.create(name: "manager")
 #manager = User.new({email: "manager@manager.com", password: "abc123456", password_confirmation: "abc123456"})
 #manager.roles << manager_role
 #manager.save
 
-Role.create(name: "field worker")
+field_worker = Role.create(name: "field worker")
 #worker = User.new({email: "worker@worker.com", password: "abc123456", password_confirmation: "abc123456"})
 #worker.roles << worker_role
 #worker.save
@@ -40,9 +40,9 @@ areas_users.area = kyiv
 areas_users.user = user
 areas_users.save
 
-#role = Role.create(name: "field worker")
-#user.roles = role
-#role.save
+role = manager_role
+user.roles = role
+user.save
 
 areas_regions = AreasRegion.new
 areas_regions.area = kyiv
