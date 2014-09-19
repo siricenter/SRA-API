@@ -7,7 +7,7 @@ module Sinatra
                 
                     #Retreives all roles
                     app.get '/roles' do
-						@role = Role.all
+						@roles = Role.all
 						rabl :roles, format: :json
                     end
 

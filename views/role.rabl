@@ -20,11 +20,24 @@ child :users, :object_root => false do
 				 end
 			end
 			
+			child :people, :object_root => false do
+			attributes *Person.column_names - ["created_at", "updated_at"]
+			
+				child :jobs, :object_root => false do
+				attributes *Job.column_names
+				
+				end
+			
+			end
+			
         end
 	
     end	
     	
 end
+
+
+    
 
 
     
