@@ -40,9 +40,9 @@ areas_users.area = kyiv
 areas_users.user = user
 areas_users.save
 
-role = manager_role
-user.roles = role
-user.save
+#role = manager_role
+#user.roles = role
+#user.save
 
 areas_regions = AreasRegion.new
 areas_regions.area = kyiv

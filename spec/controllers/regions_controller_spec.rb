@@ -19,11 +19,11 @@ describe 'Regions' do
 			regions = JSON.parse(json)
 			expect(regions.count).to eq(1)
 
-            expect(regions.first['areas'].count).to eq(1)
-            expect(regions.first['areas'].first['households'].count).to eq(1)
-            expect(regions.first['areas'].first['households'].first['people'].count).to eq(1)
-            expect(regions.first['areas'].first['households'].first['interview']['consumed_foods'].count).to eq(1)
-            expect(regions.first['areas'].first['households'].first['people'].first['jobs'].count).to eq(1)
+			expect(regions.first['region']['name']).to eq(region.name)
+			expect(regions.first['region']['areas'].first['households'].first['name'] ).to eq(household.name)
+			expect(regions.first['region']['areas'].first['households'].first['people'].first['given_name']).to eq(person.given_name)
+			expect(regions.first['region']['areas'].first['households'].first['interview']['roof']).to eq(interview.roof)
+			expect(regions.first['region']['areas'].first['households'].first['people'].first['jobs'].first['title']).to eq(jobs.title)
 		end
 
 		it 'creates a new region' do
