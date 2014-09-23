@@ -11,11 +11,9 @@ describe 'Households' do
 			get '/households'
 			json = last_response.body
 			households = JSON.parse(json)
-			expect(households.first['id']).to eq(household.id)
-			expect(households.first['name']).to eq(household.name)
-			expect(households.first['interview']['consumed_foods'].count).to eq(1)
-			expect(households.first['people'].count).to eq(1)
-			expect(households.first['people'].first['jobs'].count).to eq(1)
+			expect(households.first['household']['id']).to eq(household.id)
+			expect(households.first['household']['name']).to eq(household.name)
+			expect(households.first['household']['people'].first['given_name']).to eq(person.given_name)
 		end
 
 		it "creates a new household" do
@@ -32,7 +30,7 @@ describe 'Households' do
 			get "/households/#{household.to_param}"
 			json = last_response.body
 			household_hash = JSON.parse(json)
-			expect(household_hash['name']).to eq(household.name)
+			expect(household_hash['household']['name']).to eq(household.name)
 		end
 
 		it "updates a household" do
