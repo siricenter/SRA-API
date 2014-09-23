@@ -18,7 +18,6 @@ describe 'Regions' do
 			json = last_response.body
 			regions = JSON.parse(json)
 			expect(regions.count).to eq(1)
-
 			expect(regions.first['region']['name']).to eq(region.name)
 			expect(regions.first['region']['areas'].first['households'].first['name'] ).to eq(household.name)
 			expect(regions.first['region']['areas'].first['households'].first['people'].first['given_name']).to eq(person.given_name)
