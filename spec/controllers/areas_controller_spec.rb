@@ -18,15 +18,12 @@ describe 'Areas' do
 			json = last_response.body
 			areas = JSON.parse(json)
             expect(areas.count).to eq(1)
-			expect(areas.first['id']).to eq(area.id)
-			expect(areas.first['name']).to eq(area.name)
-            expect(areas.first['users'].count).to eq(1)
-            expect(areas.first['regions'].count).to eq(1)
-            expect(areas.first['areas_users'].count).to eq(1)
-            expect(areas.first['households'].count).to eq(1)
-			expect(areas.first['households'].first['interview']['consumed_foods'].count).to eq(1)
-            expect(areas.first['households'].first['people'].count).to eq(1)
-            expect(areas.first['households'].first['people'].first['jobs'].count).to eq(1)
+			expect(areas.first['area']['id']).to eq(area.id)
+			expect(areas.first['area']['name']).to eq(area.name)
+			expect(areas.first['area']['users'].count).to eq(1)
+			expect(areas.first['area']['regions'].first['name']).to eq(region.name)
+			expect(areas.first['area']['households'].first['name']).to eq(household.name)
+			expect(areas.first['area']['households'].first['interview']['consumed_foods'].first['id']).to eq(consumed_food.id)
             
 		end
 
