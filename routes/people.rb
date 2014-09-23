@@ -26,7 +26,7 @@ module Sinatra
                     end
                     
                     #Updates a person
-                    app.put '/people/:id' do
+                    app.post '/people/:id' do
                         person = Person.find(params[:id])
 						person.attributes.update(params[:person])
                         person.save!
