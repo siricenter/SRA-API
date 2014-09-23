@@ -35,13 +35,23 @@ describe 'Regions' do
 	context '/regions/:id' do
 		it 'retrieves a specific region' do
 			region = FactoryGirl.create(:region)
+			user = FactoryGirl.create(:user)
+            area = FactoryGirl.create(:area)
+            areas_regions = FactoryGirl.create(:areas_region, {area: area, region: region})
+            household = FactoryGirl.create(:household, {area: area})
+            person = FactoryGirl.create(:person, {household: household})
+            jobs = FactoryGirl.create(:job, {person: person})
+            interview = FactoryGirl.create(:interview, {household: household})
+            consumed_food = FactoryGirl.create(:consumed_food, {interview: interview})
 			get "/regions/#{region.to_param}"
 			expect(last_response.status).to eq(200)
 			
 			json = last_response.body
-			region1_hash = JSON.parse(json)
-			region1 = Region.new(region1_hash)
-			expect(region1).to eq(region)
+			regions = JSON.parse(json)
+			expect(regions['region']['name']).to eq(region.name)
+			expect(regions['region']['areas'].first['name']).to eq(area.name)
+			#expect(regions['region']['areas'].first['users'].first['email']).to eq(user.email)
+			expect(regions['region']['areas'].first['households'].first['name']).to eq(household.name)
 		end
 
 		it 'updates a specific region' do
