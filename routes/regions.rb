@@ -7,7 +7,8 @@ module Sinatra
                 
                     #Retreives all regions
                     app.get '/regions' do
-                        areas = Region.all.as_json(include: {:areas => {include: {:households => {include: [{:people => {include: :jobs}},{:interview => {include: :consumed_foods}}]}}}}).to_json
+						@regions = Region.all#.as_json(include: {:areas => {include: {:households => {include: [{:people => {include: :jobs}},{:interview => {include: :consumed_foods}}]}}}}).to_json
+						rabl :regions, format: :json
                     end
                     
                     #Create a region
@@ -18,7 +19,8 @@ module Sinatra
                     
                     #Retreive a region
                     app.get '/regions/:id' do
-                        Region.find(params[:id]).to_json
+						@region = Region.find(params[:id])#.to_json
+						rabl :region, format: :json
                     end
                     
                     #Update a Region

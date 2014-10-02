@@ -1,4 +1,4 @@
-object @area
+object @areas
 attributes *Area.column_names - ["created_at", "updated_at"], :object_root => false 
 
 child :regions, :object_root => false  do

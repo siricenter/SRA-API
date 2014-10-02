@@ -7,8 +7,9 @@ module Sinatra
                     
                     #Retreive all households
                     app.get '/households' do
-						Household.all.as_json(include:[{:people => {include: :jobs}},{:interview => {include: :consumed_foods}}]).to_json
-                    end
+						@households = Household.all #as_json(include:[{:people => {include: :jobs}},{:interview => {include: :consumed_foods}}]).to_json
+						rabl :households, format: :json
+					end
 
                     #Create a Household
                     app.post '/households' do
@@ -17,7 +18,8 @@ module Sinatra
 
                     #Retreive a household
                     app.get '/households/:id' do
-                        Household.find(params[:id]).to_json
+						@household = Household.find(params[:id])
+						rabl :household, format: :json
                     end
 
                     #Update a household
