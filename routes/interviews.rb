@@ -12,7 +12,17 @@ module Sinatra
 
                     #Create an interview
                     app.post '/interviews' do
-                        {id: Interview.create(params[:interview]).id}.to_json
+                        @household = Household.find(params[:household_id])
+		                @interview = Interview.new(params[:interview])
+		                @interview.household = @household
+		                @path = [@household, @interview]
+                        if params[:consumed_foods]
+			                params[:consumed_foods].each do |key, food|
+				                @interview.consumed_foods.build(food)
+                            end
+                        end
+                        @interview.save!
+                        return {id: @interview.id}.to_json
                     end
 
                     #Retreive an interview
