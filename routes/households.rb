@@ -13,7 +13,16 @@ module Sinatra
 
                     #Create a Household
                     app.post '/households' do
-                        {id: Household.create!(params[:household]).to_param}.to_json
+						houshold = Household.find_by(:name, params[:household][:name])
+						if household.blank?
+							{id: Household.create!(params[:household]).to_param}.to_json
+					    else
+							if household.people == params[:household][:people]
+								return "{error:[message:'resource already exists']}"
+							else
+							    {id: Household.create!(params[:household]).to_param}.to_json
+							end
+						end
                     end
 
                     #Retreive a household
