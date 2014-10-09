@@ -7,6 +7,7 @@ gem 'bcrypt'
 gem 'rack'
 gem 'uuid'
 gem 'rabl'
+gem 'nutritionix'
 
 # Testing Gems
 gem 'database_cleaner', group: [:test]

@@ -1,10 +1,11 @@
+require "nutritionix/api_1_1"
+
 module Sinatra
     module API
         module Routing
-            module ConsumedFoods
-            require "nutritionix/api_1_1"
+			module Search
                 def self.registered(app)
-					app.post '/consumed_foods' do
+					app.post '/search' do
 					app_id = "f67bfd42"
 					api_key = "c69bd76b98dd8d4e1fd629241b3bb199"
 					query = params[:query]
@@ -24,6 +25,7 @@ module Sinatra
 					respond_to do |format|
 						format.json { render json: @results_json }
 					end
+				end
                 end
             end
         end
