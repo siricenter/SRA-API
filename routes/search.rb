@@ -12,7 +12,7 @@ module Sinatra
 					provider = Nutritionix::Api_1_1.new(app_id, api_key)
 					search_params = {
 						offset: 0,
-						limit: 5,
+						limit: 1,
 						fields: ['brand_id', 'brand_name', 'item_id', 'item_name', 'nf_calories'],
 						filters: {
 							item_type: 3
@@ -21,10 +21,6 @@ module Sinatra
 						}
 
 					@results_json = provider.nxql_search(search_params)
-
-					respond_to do |format|
-						format.json { render json: @results_json }
-					end
 				end
                 end
             end

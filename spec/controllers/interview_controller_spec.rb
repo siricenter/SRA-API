@@ -16,7 +16,7 @@ describe 'Interviews' do
 			household = FactoryGirl.create(:household)
 			expect {
 				post '/interviews', {interview: {id: 1, household_id: household.to_param}}
-			}.to change(Interview, :count).by(1)
+				}.to change(Interview, :count).by(1)
 		end
 
 	end

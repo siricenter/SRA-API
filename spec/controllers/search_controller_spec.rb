@@ -1,13 +1,12 @@
 describe 'Consumed Foods' do
 	include RspecMixin
-	context '/consumed_foods' do
+	context '/search' do
 		it "returns a list of food" do
 			query = 'corn'
 			post '/search', {query: query}
 			json = last_response.body
 			results = JSON.parse(json)
-			expect(results.n_id).should_not eq(0)
-			
+			expect(results['hits'].first['_id']).to_not be_nil
 		end
 	end
 end
