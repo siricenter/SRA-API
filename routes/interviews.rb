@@ -12,7 +12,7 @@ module Sinatra
 
                     #Create an interview
                     app.post '/interviews' do
-                        @household = Household.find(params[:household_id])
+						@household = Household.find(params[:interview][:household_id])
 		                @interview = Interview.new(params[:interview])
 		                @interview.household = @household
 		                @path = [@household, @interview]
