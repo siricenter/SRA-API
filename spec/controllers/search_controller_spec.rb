@@ -7,6 +7,7 @@ describe 'Consumed Foods' do
 			json = last_response.body
 			results = JSON.parse(json)
 			expect(results['hits'].first['_id']).to_not be_nil
+			expect(results['hits'].first['_type']).to eq('item')
 		end
 	end
 end
