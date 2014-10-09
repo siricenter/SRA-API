@@ -9,7 +9,6 @@ describe 'Interviews' do
 			json = last_response.body
 			interviews = JSON.parse(json)
 			expect(interviews.count).to eq(1)
-           
             expect(interviews.first['consumed_foods'].count).to eq(1)
 		end
 
