@@ -18,7 +18,7 @@ class API < Sinatra::Base
     register Sinatra::API::Routing::Areas
     register Sinatra::API::Routing::AreasUsers
     register Sinatra::API::Routing::AreasRegions
-    register Sinatra::API::Routing::ConsumedFoods
+	register Sinatra::API::Routing::Search
     register Sinatra::API::Routing::Events
     register Sinatra::API::Routing::FamilyRelationships
     register Sinatra::API::Routing::Households

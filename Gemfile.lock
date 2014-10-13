@@ -27,7 +27,11 @@ GEM
     json (1.8.1)
     macaddr (1.7.1)
       systemu (~> 2.6.2)
+    mime-types (2.4.1)
     minitest (5.4.0)
+    netrc (0.7.7)
+    nutritionix (1.1.0)
+      rest-client
     pg (0.17.1)
     rabl (0.11.0)
       activesupport (>= 2.3.14)
@@ -37,6 +41,9 @@ GEM
     rack-test (0.6.2)
       rack (>= 1.0)
     rake (10.3.2)
+    rest-client (1.7.2)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     rspec (3.0.0)
       rspec-core (~> 3.0.0)
       rspec-expectations (~> 3.0.0)
@@ -72,6 +79,7 @@ DEPENDENCIES
   database_cleaner
   factory_girl
   faker
+  nutritionix
   pg
   rabl
   rack
