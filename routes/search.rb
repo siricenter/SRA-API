@@ -21,6 +21,7 @@ module Sinatra
 						}
 
 					@results_json = provider.nxql_search(search_params)
+					
 				end
                 end
             end

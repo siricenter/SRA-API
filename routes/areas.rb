@@ -18,7 +18,12 @@ module Sinatra
                         area.save!
                         return {id: area.id}.to_json
                     end
-
+					
+					app.get '/areas/update/:date' do
+						@areas = Area.where('updated at BETWEEN ? AND ?', params[:date], DateTime.now).all
+						rabl :areas, format: :json
+					end
+					
                     #Retreive an area
                     app.get '/areas/:id' do
                         @area = Area.find(params[:id])
