@@ -20,7 +20,7 @@ module Sinatra
                     end
 					
 					app.get '/areas/update/:date' do
-						@areas = Area.where('updated at BETWEEN ? AND ?', params[:date], DateTime.now).all
+						@areas = Area.where('updated_at >= ?', params[:date]).all
 						rabl :areas, format: :json
 					end
 					
