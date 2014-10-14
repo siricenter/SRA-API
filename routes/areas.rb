@@ -21,7 +21,8 @@ module Sinatra
 					
 					app.get '/areas/update/:date' do
 						# this works in psql SELECT * FROM areas WHERE updated_at>'2014-10-13 16:48:40.527721';
-						@areas = Area.where("updated_at>'" + params[:date].tr("T", " ") + "'")
+						date = "#{params[:date]}".tr("_", "")
+					@areas = Area.where("updated_at>'" + date + "'")
 						rabl :areas, format: :json
 					end
 					
