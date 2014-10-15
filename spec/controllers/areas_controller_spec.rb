@@ -56,4 +56,15 @@ describe 'Areas' do
 			expect(Area.exists?(area.to_param)).to be false
 		end
     end
+	context '/areas/update/:date' do
+		it "should give back a list of areas within a specific time frame" do
+			area = FactoryGirl.create(:area)
+			date = '2014-10-13_16:48:40.527721'
+			get "/areas/update/#{date}"
+			json = last_response.body
+			area_hash = JSON.parse(json)
+			expect(area_hash).not_to be_empty
+		end
+	end
+	
 end
