@@ -24,6 +24,14 @@ module Sinatra
                         @area = Area.find(params[:id])
 						rabl :area, format: :json
                     end
+					
+					app.get '/areas/update/:date' do
+						date = params[:date].tr(" ", "_")
+						@areas = Area.where('updated_at BETWEEN :now AND :date', {now: Time.now, date: date })
+						rabl :areas, format: :json
+					end      
+					
+						
 
                     #Updates an area
                     app.put '/areas/:id' do
