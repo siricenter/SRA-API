@@ -68,8 +68,7 @@ module Sinatra
                         area.destroy
                     end
                     
-                end
-            
+
             end
         end
     end
