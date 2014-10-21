@@ -40,6 +40,12 @@ module Sinatra
                         Interview.find(params[:id]).destroy
                     end
                     
+					app.get '/interviews/update/:date' do
+						date = params[:date].tr("_", " ")
+						@interviews = Interview.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
+						rabl :interviews_update, format: :json
+					end   
+					
                 end
             
             end

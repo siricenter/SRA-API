@@ -32,6 +32,11 @@ module Sinatra
                     app.delete '/regions/:id' do
                         Region.find(params[:id]).destroy
                     end
+					app.get '/regions/update/:date' do
+						date = params[:date].tr("_", " ")
+						@regions = Region.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
+						rabl :region_update, format: :json
+					end  
                     
                 end
             

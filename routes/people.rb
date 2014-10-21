@@ -37,6 +37,11 @@ module Sinatra
                         person = Person.find(params[:id])
                         person.destroy
                     end
+					app.get '/people/update/:date' do
+						date = params[:date].tr("_", " ")
+						@people = Person.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
+						rabl :people_update, format: :json
+					end  
                     
                 end
             

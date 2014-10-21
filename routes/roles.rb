@@ -31,6 +31,11 @@ module Sinatra
                     app.delete '/roles/:id' do
                         Role.find(params[:id]).destroy
                     end
+					app.get '/roles/update/:date' do
+						date = params[:date].tr("_", " ")
+						@roles = Role.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
+						rabl :role_update, format: :json
+					end  
                     
                 end
             

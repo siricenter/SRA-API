@@ -34,6 +34,12 @@ module Sinatra
                     app.delete '/jobs/:id' do
                         Job.find(params[:id]).destroy
                     end
+					
+					app.get '/jobs/update/:date' do
+						date = params[:date].tr("_", " ")
+						@jobs = Job.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
+						rabl :jobs_update, format: :json
+					end  
                     
                 end
             

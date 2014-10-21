@@ -26,9 +26,9 @@ module Sinatra
                     end
 					
 					app.get '/areas/update/:date' do
-						date = params[:date].tr(" ", "_")
-						@areas = Area.where('updated_at BETWEEN :now AND :date', {now: Time.now, date: date })
-						rabl :areas, format: :json
+						date = params[:date].tr("_", " ")
+						@areas = Area.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
+						rabl :areas_update, format: :json
 					end      
 					
 						

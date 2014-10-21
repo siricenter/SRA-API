@@ -33,6 +33,12 @@ module Sinatra
 							end
 					end
 					
+					app.get '/areas_users/update/:date' do
+						date = params[:date].tr("_", " ")
+						@areas_users = AreaUsers.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
+						rabl :areas, format: :json
+					end  
+					
                 end
             end
         end

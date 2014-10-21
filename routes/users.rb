@@ -29,6 +29,11 @@ module Sinatra
                     app.delete '/users/:id' do
                         User.find(params[:id]).destroy
                     end
+					app.get '/users/update/:date' do
+						date = params[:date].tr("_", " ")
+						@users = User.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
+						rabl :users_update, format: :json
+					end  
                 end
             end
         end

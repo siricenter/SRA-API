@@ -46,6 +46,11 @@ module Sinatra
 							return 403
 						end
 					end
+					app.get '/occupations/update/:date' do
+						date = params[:date].tr("_", " ")
+						@occupations = Occupation.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
+						rabl :occupations_update, format: :json
+					end  
                 end
             end
         end

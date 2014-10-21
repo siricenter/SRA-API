@@ -43,6 +43,11 @@ module Sinatra
 							return 403
 						end
 					end
+					app.get '/family_relationship/update/:date' do
+						date = params[:date].tr("_", " ")
+						@family_relationship = FamilyRelationship.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
+						rabl :family_relationship, format: :json
+					end  
                 end
             end
         end
