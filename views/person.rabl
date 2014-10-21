@@ -8,4 +8,5 @@ end
 child :household, :object_root => false do
 	attributes :name
 end
+end
  
