@@ -1,2 +1,2 @@
 object @areas
-attributes *Area.column_names, :object_root => false 
+attributes  :id, :name, :object_root => false 
