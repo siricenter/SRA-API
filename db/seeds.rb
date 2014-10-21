@@ -118,7 +118,7 @@ consumed_foods.save
 
 
 relationships = [
-	{name: "Grandfather"},
+	{name:  "Grandfather"},
 	{name: 	"Grandmother"},
 	{name: 	"Father"},
 	{name: 	"Mother"},
@@ -131,7 +131,7 @@ relationships = [
 	{name: 	"Cousin"},
 	{name: 	"Friend"},
 	{name: 	"Roommate"},
-	{name: "Other"}
+	{name:  "Other"}
 ]
 
 FamilyRelationship.create(relationships)

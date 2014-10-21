@@ -1,5 +1,5 @@
 object @household
-attributes :id, :name, :object_root => false
+attributes :id, :name, :created_at, :object_root => false
 
 child :people do
     attributes :id, :given_name

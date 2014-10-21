@@ -14,11 +14,33 @@ module Sinatra
                 
                     #Create a new Area
                     app.post '/areas' do
-                        area = Area.new(params[:area])    
+						area = Area.find_by(name: params[:name])
+						if area.blank?
+							{id: Area.create!(params[:area]).to_param}.to_json
+					    else
+							if area.people == params[:households]
+								if params[:override] == null
+									return "{error:[message:'resource already exists']}"
+								elsif params[:override] == true
+									# override
+									{id: Household.create!(params[:household]).to_param}.to_json
+								end
+							else
+							    {id: Household.create!(params[:household]).to_param}.to_json
+							end
+						end
+                    end
                         area.save!
                         return {id: area.id}.to_json
                     end
-
+					
+					app.get '/areas/update/:date' do
+						# this works in psql SELECT * FROM areas WHERE updated_at>'2014-10-13 16:48:40.527721';
+						date = params[:date].tr("_", " ")
+						@areas = Area.where("updated_at>'" + date + "'")
+						rabl :areas, format: :json
+					end
+					
                     #Retreive an area
                     app.get '/areas/:id' do
                         @area = Area.find(params[:id])
