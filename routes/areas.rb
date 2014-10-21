@@ -29,7 +29,6 @@ module Sinatra
 							    {id: Household.create!(params[:household]).to_param}.to_json
 							end
 						end
-                    end
                         area.save!
                         return {id: area.id}.to_json
                     end
@@ -67,8 +66,7 @@ module Sinatra
                         area = Area.find(params[:id])
                         area.destroy
                     end
-                    
-
+				end
             end
         end
     end
