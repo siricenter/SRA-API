@@ -43,7 +43,7 @@ module Sinatra
                     end
 					app.get '/households/update/:date' do
 						date = params[:date].tr("_", " ")
-						@households = Household.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
+						@households_update = Household.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
 						rabl :households_update, format: :json
 					end  
                                         

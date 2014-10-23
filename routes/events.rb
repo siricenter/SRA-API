@@ -37,7 +37,7 @@ module Sinatra
 					
 					app.get '/events/update/:date' do
 						date = params[:date].tr("_", " ")
-						@events = Event.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
+						@events_update = Event.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
 						rabl :events_update, format: :json
 					end  
                     
