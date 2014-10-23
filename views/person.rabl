@@ -1,12 +1,17 @@
 object @person
-attributes :id, :given_name
+attributes :id, :given_name, :birthday, :education_level, :gender, :in_school, :is_alive
 
-child :job, :object_root => false do
+child :jobs, :object_root => false do
 	attributes :title
 end
 
 child :household, :object_root => false do
 	attributes :name
 end
+
+child :family_relationship, :object_root => false do
+	attributes :id, :name
 end
+	
+
  
