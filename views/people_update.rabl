@@ -1,4 +1,4 @@
-object @people
-attributes :id, :given_name
+object @people_update
+attributes *Person.column_names, :object_root => false 
 
  

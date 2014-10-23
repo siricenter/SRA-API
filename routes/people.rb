@@ -39,7 +39,7 @@ module Sinatra
                     end
 					app.get '/people/update/:date' do
 						date = params[:date].tr("_", " ")
-						@people = Person.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
+						@people_update = Person.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
 						rabl :people_update, format: :json
 					end  
                     
