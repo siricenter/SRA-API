@@ -7,7 +7,7 @@
 #  user_id :integer
 #
 
-class RolesUsers < ActiveRecord::Base
-    belongs_to :users
-    belongs_to :roles
+class RolesUser < ActiveRecord::Base
+    belongs_to :user
+    belongs_to :role
 end

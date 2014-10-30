@@ -6,7 +6,7 @@ module Sinatra
                     
                     #Retreives all the people 
                     app.get '/people' do
-						@people = Person.all #.as_json(include: :jobs).to_json
+						@people = Person.all
 						rabl :people, format: :json
                     end
                     

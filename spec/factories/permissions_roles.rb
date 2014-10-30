@@ -5,7 +5,7 @@
 
 
 FactoryGirl.define do
-	factory :permissions_roles do
+	factory :permissions_role do
     	permission
     	role
 	end
