@@ -35,14 +35,7 @@ describe 'Users' do
 		end
 
 		it "creates a new User" do
-			expect{
-				post '/users', {
-					user: {
-						email: Faker::Internet.email,
-						password: Faker::Internet.password
-					}
-				}
-			}.to change(User, :count).by(1)
+			expect{post '/users', {user: {email: Faker::Internet.email,password: Faker::Internet.password}}}.to change(User, :count).by(1)
 		end
 	end
 

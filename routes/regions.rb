@@ -2,7 +2,6 @@ module Sinatra
     module API
         module Routing
             module Regions
-            
                 def self.registered(app)
                 
                     #Retreives all regions

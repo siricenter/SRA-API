@@ -2,7 +2,6 @@ module Sinatra
     module API
         module Routing
             module Occupations
-            
                 def self.registered(app)
 					#returns all the occupations currently existing in Database 
 					app.get "/occupations" do

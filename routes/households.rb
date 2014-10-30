@@ -2,7 +2,6 @@ module Sinatra
     module API
         module Routing
             module Households
-            
                 def self.registered(app)
                     
                     #Retreive all households
@@ -45,10 +44,8 @@ module Sinatra
 						date = params[:date].tr("_", " ")
 						@households_update = Household.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
 						rabl :households_update, format: :json
-					end  
-                                        
+					end                 
                 end
-            
             end
         end
     end

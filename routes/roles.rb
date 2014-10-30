@@ -2,7 +2,6 @@ module Sinatra
     module API
         module Routing
             module Roles
-            
                 def self.registered(app)
                 
                     #Retreives all roles

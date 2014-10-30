@@ -19,10 +19,8 @@ module Sinatra
 						},
 						query: query,
 						}
-
 					@results_json = provider.nxql_search(search_params)
-					
-				end
+				    end
                 end
             end
         end

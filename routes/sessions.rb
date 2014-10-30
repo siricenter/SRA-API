@@ -2,7 +2,6 @@ module Sinatra
     module API
         module Routing
             module Sessions
-            
                 def self.registered(app)
                     #Create a session
                     app.post '/session' do
@@ -15,8 +14,6 @@ module Sinatra
                         #token = Token.new({token_string: uuid, user_id: user.id})
                         #token.save!
                         #return token.token_string
-						
-						
                     end
                 end
             end
