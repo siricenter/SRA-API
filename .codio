@@ -3,7 +3,7 @@
 
 // Run button configuration
   "commands": {
-	"Build Server": "./setup_codio.rb",
+	  "Build Server": "./setup_codio.rb",
       "Restart Sinatra": "pkill ruby; rackup&",
 	  "Run RSpec": "rake db:test:prepare; rake spec",
 	  "Run Cucumber": "rake cucumber",

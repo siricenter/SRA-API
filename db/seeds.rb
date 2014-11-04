@@ -49,12 +49,12 @@ areas_regions.area = kyiv
 areas_regions.region = region
 areas_regions.save
 
-household = Household.create(id: 1, name: 'Ivanovich')
-household.area = kyiv
-household.save
+#household = Household.create(name: 'Ivanovich')
+#household.area = kyiv
+#household.save
 
-person = Person.create(given_name: 'Johnny', family_name: 'Ivanovich', birthday: Time.now, education_level: 'some college', gender: "male", in_school: true, household: household)
-person.household = household
+#person = Person.create(given_name: 'Johnny', family_name: 'Ivanovich', birthday: Time.now, education_level: 'some college', gender: "male", in_school: true, household: household)
+##person.household = household
 person.save
 
 occupation = Occupation.create(name: 'Pipe Mover')
