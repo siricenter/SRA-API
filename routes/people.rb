@@ -2,12 +2,11 @@ module Sinatra
     module API
         module Routing
             module People
-            
                 def self.registered(app)
                     
                     #Retreives all the people 
                     app.get '/people' do
-						@people = Person.all #.as_json(include: :jobs).to_json
+						@people = Person.all
 						rabl :people, format: :json
                     end
                     
@@ -42,9 +41,7 @@ module Sinatra
 						@people_update = Person.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
 						rabl :people_update, format: :json
 					end  
-                    
                 end
-            
             end
         end
     end

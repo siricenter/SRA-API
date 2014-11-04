@@ -2,7 +2,6 @@ module Sinatra
     module API
         module Routing
             module AreasRegions
-            
                 def self.registered(app)
                     
                     #Creates a new AreasRegions
@@ -36,8 +35,7 @@ module Sinatra
 						date = params[:date].tr("_", " ")
 						@area_region = region.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
 						rabl :area_region, format: :json
-					end  
-					
+					end
                 end
             end
         end

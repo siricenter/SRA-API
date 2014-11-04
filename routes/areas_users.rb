@@ -2,7 +2,6 @@ module Sinatra
     module API
         module Routing
             module AreasUsers
-            
                 def self.registered(app)
 					#Creates a new relationship
 					app.post '/areas/:area_id/users/:user_id' do
@@ -38,7 +37,6 @@ module Sinatra
 						@areas_users = AreaUsers.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
 						rabl :areas, format: :json
 					end  
-					
                 end
             end
         end

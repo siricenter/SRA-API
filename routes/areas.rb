@@ -2,7 +2,6 @@ module Sinatra
     module API
         module Routing
             module Areas
-            
                 def self.registered(app)
                     
                     #Retreives all the areas
@@ -14,23 +13,12 @@ module Sinatra
                 
                     #Create a new Area
                     app.post '/areas' do
-						area = Area.find_by(name: params[:name])
+                        area = Area.find_by(name: params[:name])
 						if area.blank?
 							{id: Area.create!(params[:area]).to_param}.to_json
 					    else
-							if area.people == params[:households]
-								if params[:override] == null
-									return "{error:[message:'resource already exists']}"
-								elsif params[:override] == true
-									# override
-									{id: Household.create!(params[:household]).to_param}.to_json
-								end
-							else
-							    {id: Household.create!(params[:household]).to_param}.to_json
-							end
+							return "{error:[message:'resource already exists']}"
 						end
-                        area.save!
-                        return {id: area.id}.to_json
                     end
 					
 					app.get '/areas/update/:date' do

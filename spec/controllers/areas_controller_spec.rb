@@ -36,9 +36,8 @@ describe 'Areas' do
 		end
 
 		it "creates a new area" do
-			expect {
-				post '/areas', {area: {name: 'Area 51'}}
-			}.to change(Area, :count).by(1)
+            #expect {post '/households', {household: {name: 'household 51', area_id: area.to_param}}}.to change(Household, :count).by(1)
+			expect {post '/areas', {area: {name: 'Area 51'}}}.to change(Area, :count).by(1)
 		end
 	end
 

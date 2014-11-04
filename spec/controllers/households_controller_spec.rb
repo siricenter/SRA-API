@@ -18,9 +18,7 @@ describe 'Households' do
 
 		it "creates a new household" do
 			area = FactoryGirl.create(:area)
-			expect {
-				post '/households', {household: {name: 'household 51', area_id: area.to_param}}
-				}.to change(Household, :count).by(1)
+			expect {post '/households', {household: {name: 'household 51', area_id: area.to_param}}}.to change(Household, :count).by(1)
 		end
 		it 'trys to create a household that already exists' do
 			area = FactoryGirl.create(:area)

@@ -2,7 +2,6 @@ module Sinatra
     module API
         module Routing
             module Interviews
-            
                 def self.registered(app)
                     
                     #Retreives all interviews
@@ -45,9 +44,7 @@ module Sinatra
 						@interviews = Interview.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
 						rabl :interviews_update, format: :json
 					end   
-					
                 end
-            
             end
         end
     end

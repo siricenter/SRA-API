@@ -2,7 +2,6 @@ module Sinatra
     module API
         module Routing
             module Users
-            
                 def self.registered(app)
                 
                     #Retreives all the users 

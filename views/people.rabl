@@ -1,4 +1,4 @@
-object @people_update
+object @people
 attributes :id, :given_name, :updated_at, :created_at, :object_root => false
 
 child :jobs, :object_root => false do

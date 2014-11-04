@@ -4,7 +4,7 @@
 
 
 FactoryGirl.define do
-	factory :roles_users do
+	factory :roles_user do
 		role
 		user
 	end

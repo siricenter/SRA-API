@@ -2,7 +2,6 @@ module Sinatra
     module API
         module Routing
             module FamilyRelationships
-            
                 def self.registered(app)
 					#creates a new family_relationship
 					app.post "/family_relationships" do

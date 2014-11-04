@@ -2,7 +2,6 @@ module Sinatra
     module API
         module Routing
             module Jobs
-            
                 def self.registered(app)
                     
                     #Retreives all the jobs
@@ -40,9 +39,7 @@ module Sinatra
 						@jobs = Job.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
 						rabl :jobs_update, format: :json
 					end  
-                    
                 end
-            
             end
         end
     end
