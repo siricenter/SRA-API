@@ -5,18 +5,16 @@ describe 'Users' do
 			user = FactoryGirl.create(:user)
 			area = FactoryGirl.create(:area)
 			region = FactoryGirl.create(:region)
-			role = FactoryGirl.create(:role)
+			#role = FactoryGirl.create(:role)
             permission = FactoryGirl.create(:permission)
             
-            
-			events = FactoryGirl.create(:event, {user: user})
 			household = FactoryGirl.create(:household, {area: area})
             
             
-            areas_user = FactoryGirl.create(:areas_user, {area: area, user: user})
-            areas_region = FactoryGirl.create(:areas_region, {area: area, region: region})
-            roles_user = FactoryGirl.create(:roles_user, {role: role, user: user})
-            permissions_role = FactoryGirl.create(:permissions_role,{permission: permission, role: role})
+            FactoryGirl.create(:areas_user, {area: area, user: user})
+            FactoryGirl.create(:areas_region, {area: area, region: region})
+            #FactoryGirl.create(:roles_user, {role: role, user: user})
+            #FactoryGirl.create(:permissions_role,{permission: permission, role: role})
             
             
 			person = FactoryGirl.create(:person,{household: household})

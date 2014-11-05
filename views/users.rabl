@@ -1,7 +1,7 @@
-object @user
+object @users
 attributes *User.column_names
   
-child :areas  do
+child :areas do
     attributes *Area.column_names
     
     child :regions do
@@ -27,8 +27,8 @@ child :areas  do
             end
         end
     end
-    
-    child :roles  do
-        attributes *Role.column_names
-    end
+end   
+
+child :roles  do
+    attributes *Role.column_names
 end

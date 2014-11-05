@@ -27,8 +27,8 @@ child :areas  do
             end
         end
     end
-    
-    child :roles  do
-        attributes *Role.column_names
-    end
+end    
+
+child :roles  do
+    attributes *Role.column_names
 end
