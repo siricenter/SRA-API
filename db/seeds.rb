@@ -4,32 +4,27 @@
 # Examples:
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'E
-#   manuel', city: cities.first)
+#   Mayor.create(name: 'Emanuel', city: cities.first)
 public_role = Role.create(name: "public")
 
-#admin_role = Role.create(name: "admin")
-#admin = User.new({email: "admin@admin.com", password: "abc123456", password_confirmation: "abc123456"})
-#admin.roles << admin_role
-#admin.save
+admin_role = Role.create(name: "admin")
+admin = User.new({email: "admin@admin.com", password: "abc123456"})
+admin.roles << admin_role
+admin.save
 
 manager_role = Role.create(name: "manager")
-#manager = User.new({email: "manager@manager.com", password: "abc123456", password_confirmation: "abc123456"})
-#manager.roles << manager_role
-#manager.save
+manager = User.new({email: "manager@manager.com", password: "abc123456"})
+manager.roles << manager_role
+manager.save
 
-field_worker = Role.create(name: "field worker")
-#worker = User.new({email: "worker@worker.com", password: "abc123456", password_confirmation: "abc123456"})
-#worker.roles << worker_role
-#worker.save
+worker_role = Role.create(name: "field worker")
+worker = User.new({email: "worker@worker.com", password: "abc123456"})
+worker.roles << worker_role
+worker.save
 
-#Permission.create([
-#	{name: "Create Household"}, 
-#	{name: "Edit Household"}])
-
-#field_worker = Role.find_by_name("Field Worker")
-#field_worker.permissions << Permission.find_by_name("Create Household")
-#field_worker.permissions << Permission.find_by_name("Edit Household")
+Permission.create([
+	{name: "Create Household"}, 
+	{name: "Edit Household"}])
 
 kyiv = Area.create(name: 'Kyiv')
 user = User.create(email: 'email@email.com')
@@ -40,21 +35,17 @@ areas_users.area = kyiv
 areas_users.user = user
 areas_users.save
 
-#role = manager_role
-#user.roles = role
-#user.save
-
 areas_regions = AreasRegion.new
 areas_regions.area = kyiv
 areas_regions.region = region
 areas_regions.save
 
-#household = Household.create(name: 'Ivanovich')
-#household.area = kyiv
-#household.save
+household = Household.create(id: 1, name: 'Ivanovich')
+household.area = kyiv
+household.reload
 
-#person = Person.create(given_name: 'Johnny', family_name: 'Ivanovich', birthday: Time.now, education_level: 'some college', gender: "male", in_school: true, household: household)
-##person.household = household
+person = Person.create(given_name: 'Johnny', family_name: 'Ivanovich', birthday: Time.now, education_level: 'some college', gender: "male", in_school: true, household: household)
+person.household = household
 person.save
 
 occupation = Occupation.create(name: 'Pipe Mover')
@@ -72,8 +63,6 @@ consumed_foods = ConsumedFood.create(n_id: "513fceb575b8dbbc21001506", servings:
 consumed_foods.interview = interview
 consumed_foods.save
 
-
-
 kyiv = Area.create(name: 'Jordan')
 user = User.create(email: 'email@email.com')
 region = Region.create(name: 'Israel')
@@ -83,18 +72,14 @@ areas_users.area = kyiv
 areas_users.user = user
 areas_users.save
 
-#role = Role.create(name: "field worker")
-#user.roles = role
-#role.save
-
 areas_regions = AreasRegion.new
 areas_regions.area = kyiv
 areas_regions.region = region
 areas_regions.save
 
-household = Household.create(id: 2, name: 'Stanch')
-household.area = kyiv
-household.save
+household1 = Household.create(id: 2, name: 'Stanch')
+household1.area = kyiv
+household1.reload
 
 person = Person.create(given_name: 'Suzzy', family_name: 'Stanch', birthday: Time.now, education_level: 'some college', gender: "male", in_school: true, household: household)
 person.household = household

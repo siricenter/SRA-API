@@ -3,12 +3,10 @@ module Sinatra
         module Routing
             module Areas
                 def self.registered(app)
-                    
                     #Retreives all the areas
                     app.get '/areas' do
                         @areas = Area.all
                         rabl :areas, format: :json
-						#areas = Area.all.as_json(include: [{:households => {include: [{:people => {include: :jobs}},{:interview => {include: :consumed_foods}}]}}, :areas_users, :users, :regions]).to_json
                     end
                 
                     #Create a new Area
@@ -38,9 +36,7 @@ module Sinatra
 						date = params[:date].tr("_", " ")
 						@areas = Area.where('updated_at BETWEEN :date AND :now', {date: date, now: Time.now })
 						rabl :areas_update, format: :json
-					end      
-					
-						
+					end     
 
                     #Updates an area
                     app.put '/areas/:id' do

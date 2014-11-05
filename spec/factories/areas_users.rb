@@ -8,6 +8,6 @@ FactoryGirl.define do
 	factory :areas_user do
     	area
     	user
-    	relationship "Lives there"
+        relationship "Field Worker"
 	end
 end

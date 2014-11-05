@@ -5,14 +5,25 @@ describe 'Areas' do
 			area = FactoryGirl.create(:area)
             user = FactoryGirl.create(:user)
             region = FactoryGirl.create(:region)
-            areas_users = FactoryGirl.create(:areas_user, {area: area, user: user})
-            areas_regions = FactoryGirl.create(:areas_region, {area: area, region: region})
-            household = FactoryGirl.create(:household, {area: area})
-            person = FactoryGirl.create(:person, {household: household})
             occupation = FactoryGirl.create(:occupation)
-            jobs = FactoryGirl.create(:job, {person: person, occupation: occupation})
+            
+            
+            household = FactoryGirl.create(:household, {area: area})
+            
+            
+            areas_user = FactoryGirl.create(:areas_user, {area: area, user: user})
+            areas_region = FactoryGirl.create(:areas_region, {area: area, region: region})
+            
+            
+            person = FactoryGirl.create(:person, {household: household})
             interview = FactoryGirl.create(:interview, {household: household})
+            
+            
+            jobs = FactoryGirl.create(:job, {person: person, occupation: occupation})
+            
+            
             consumed_food = FactoryGirl.create(:consumed_food, {interview: interview})
+            
             
 			get '/areas'
 			json = last_response.body
@@ -21,9 +32,10 @@ describe 'Areas' do
 			expect(areas.first['area']['id']).to eq(area.id)
 			expect(areas.first['area']['name']).to eq(area.name)
 			expect(areas.first['area']['users'].count).to eq(1)
-			expect(areas.first['area']['regions'].first['name']).to eq(region.name)
-			expect(areas.first['area']['households'].first['name']).to eq(household.name)
-			expect(areas.first['area']['households'].first['interview']['consumed_foods'].first['id']).to eq(consumed_food.id)
+            expect(areas.first['area']['regions']).to_not be(nil)
+            expect(areas.first['area']['regions'].first['region']['name']).to eq(region.name)
+            expect(areas.first['area']['households'].first['household']['name']).to eq(household.name)
+			expect(areas.first['area']['households'].first['household']['interview']['consumed_foods'].first['consumed_food']['id']).to eq(consumed_food.id)
             
 		end
 		
@@ -36,7 +48,6 @@ describe 'Areas' do
 		end
 
 		it "creates a new area" do
-            #expect {post '/households', {household: {name: 'household 51', area_id: area.to_param}}}.to change(Household, :count).by(1)
 			expect {post '/areas', {area: {name: 'Area 51'}}}.to change(Area, :count).by(1)
 		end
 	end

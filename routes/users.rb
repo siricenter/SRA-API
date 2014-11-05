@@ -3,10 +3,10 @@ module Sinatra
         module Routing
             module Users
                 def self.registered(app)
-                
                     #Retreives all the users 
                     app.get '/users' do
-                        User.all.to_json
+                        @users = User.all
+                        rabl :users, format: :json
                     end
                     
                     #Create a user
