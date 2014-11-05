@@ -25,11 +25,11 @@ module Sinatra
 					end
 					#returns all the existing family_relationships
 					app.get "/family_relationships" do
-						relationships = FamilyRelationship.all.to_json
+						FamilyRelationship.all.to_json
 					end
 					#returns a specfic family_relationship
 					app.get "/family_relationships/:id" do
-						relationship = FamilyRelationship.find(params[:id]).to_json
+						FamilyRelationship.find(params[:id]).to_json
 					end
 					#updating a specific family_relationship
 					app.put "/family_relationships/:id" do

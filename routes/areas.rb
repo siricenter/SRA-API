@@ -50,7 +50,7 @@ module Sinatra
                         area = Area.find(params[:id])
                         area.destroy
                     end
-				end
+                end
             end
         end
     end

@@ -3,7 +3,7 @@ require "nutritionix/api_1_1"
 module Sinatra
     module API
         module Routing
-			module Search
+            module Search
                 def self.registered(app)
 					app.post '/search' do
 					app_id = "f67bfd42"
