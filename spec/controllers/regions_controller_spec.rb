@@ -5,7 +5,9 @@ describe 'Regions' do
 			region = FactoryGirl.create(:region)
             user = FactoryGirl.create(:user)
             area = FactoryGirl.create(:area)
-            areas_regions = FactoryGirl.create(:areas_region, {area: area, region: region})
+            
+            areas_region = FactoryGirl.create(:areas_region, {area: area, region: region})
+            areas_user = FactoryGirl.create(:areas_user, {area: area, user: user})
             household = FactoryGirl.create(:household, {area: area})
             person = FactoryGirl.create(:person, {household: household})
             jobs = FactoryGirl.create(:job, {person: person})
@@ -19,10 +21,10 @@ describe 'Regions' do
 			regions = JSON.parse(json)
 			expect(regions.count).to eq(1)
 			expect(regions.first['region']['name']).to eq(region.name)
-			expect(regions.first['region']['areas'].first['households'].first['name'] ).to eq(household.name)
-			expect(regions.first['region']['areas'].first['households'].first['people'].first['given_name']).to eq(person.given_name)
-			expect(regions.first['region']['areas'].first['households'].first['interview']['roof']).to eq(interview.roof)
-			expect(regions.first['region']['areas'].first['households'].first['people'].first['jobs'].first['title']).to eq(jobs.title)
+			expect(regions.first['region']['areas'].first['area']['households'].first['household']['name'] ).to eq(household.name)
+			expect(regions.first['region']['areas'].first['area']['households'].first['household']['people'].first['person']['given_name']).to eq(person.given_name)
+			expect(regions.first['region']['areas'].first['area']['households'].first['household']['interview']['roof']).to eq(interview.roof)
+			expect(regions.first['region']['areas'].first['area']['households'].first['household']['people'].first['person']['jobs'].first['job']['title']).to eq(jobs.title)
 		end
 
 		it 'creates a new region' do
@@ -37,21 +39,34 @@ describe 'Regions' do
 			region = FactoryGirl.create(:region)
 			user = FactoryGirl.create(:user)
             area = FactoryGirl.create(:area)
-            areas_regions = FactoryGirl.create(:areas_region, {area: area, region: region})
+            occupation = FactoryGirl.create(:occupation)
+            
+            
             household = FactoryGirl.create(:household, {area: area})
+            
+            
+            areas_regions = FactoryGirl.create(:areas_region, {area: area, region: region})
+            
+            
             person = FactoryGirl.create(:person, {household: household})
-            jobs = FactoryGirl.create(:job, {person: person})
             interview = FactoryGirl.create(:interview, {household: household})
+            
+            
+            jobs = FactoryGirl.create(:job, {person: person, occupation: occupation})
             consumed_food = FactoryGirl.create(:consumed_food, {interview: interview})
-			get "/regions/#{region.to_param}"
+			
+            get "/regions/#{region.to_param}"
 			expect(last_response.status).to eq(200)
 			
 			json = last_response.body
-			regions = JSON.parse(json)
-			expect(regions['region']['name']).to eq(region.name)
-			expect(regions['region']['areas'].first['name']).to eq(area.name)
-			#expect(regions['region']['areas'].first['users'].first['email']).to eq(user.email)
-			expect(regions['region']['areas'].first['households'].first['name']).to eq(household.name)
+			jRegion = JSON.parse(json)
+            expect(jRegion['region']['name']).to eq(region.name)
+            
+			expect(jRegion['region']['areas'].first['area']['name']).to eq(area.name)
+            expect(jRegion['region']['areas'].first['area']['users']).to_not be(nil)
+            expect(jRegion['region']['areas'].first['area']['users'].count).to eq(1)
+            #expect(jRegion['region']['areas'].first['area']['users'].first['user']['email']).to eq(user.email)
+			expect(jRegion['region']['areas'].first['area']['households'].first['household']['name']).to eq(household.name)
 		end
 
 		it 'updates a specific region' do

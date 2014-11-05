@@ -1,4 +1,2 @@
 object @regions
-attributes *Region.column_names 
-
-
+attributes *Region.column_names

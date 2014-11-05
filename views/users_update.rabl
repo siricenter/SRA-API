@@ -1,2 +1,2 @@
-object @users
-attributes *User.column_names, :object_root => false 
+object @users_update
+attributes *User.column_names

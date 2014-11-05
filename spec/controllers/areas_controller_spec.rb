@@ -20,8 +20,6 @@ describe 'Areas' do
             
             
             jobs = FactoryGirl.create(:job, {person: person, occupation: occupation})
-            
-            
             consumed_food = FactoryGirl.create(:consumed_food, {interview: interview})
             
             
@@ -32,6 +30,8 @@ describe 'Areas' do
 			expect(areas.first['area']['id']).to eq(area.id)
 			expect(areas.first['area']['name']).to eq(area.name)
 			expect(areas.first['area']['users'].count).to eq(1)
+            expect(areas.first['area']['users'].first['user']['id']).to eq(user.id)
+            expect(areas.first['area']['users'].first['user']['email']).to eq(user.email)
             expect(areas.first['area']['regions']).to_not be(nil)
             expect(areas.first['area']['regions'].first['region']['name']).to eq(region.name)
             expect(areas.first['area']['households'].first['household']['name']).to eq(household.name)
@@ -55,6 +55,8 @@ describe 'Areas' do
 	context '/areas/:id' do
 		it "should return a stringified version of the specified array" do
 			area = FactoryGirl.create(:area)
+            
+            
 			get "/areas/#{area.to_param}"
 			json = last_response.body
 			area_hash = JSON.parse(json)

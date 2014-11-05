@@ -1,44 +1,30 @@
 object @role
-attributes *Role.column_names - ["created_at", "updated_at"], :object_root => false 
+attributes *Role.column_names
 
-
-child :users, :object_root => false do
-	attributes *User.column_names - ["created_at", "updated_at"], :object_root => false 
+child :users do
+	attributes *User.column_names
 	
-	child :area, :object_root => false do
-	attributes *Area.column_names - ["interview", "created_at", "updated_at"], :object_root => false
+	child :area do
+	    attributes *Area.column_names
 	
-		child :households, :object_root => false do
-		attributes *Households.column_names - ["created_at", "updated_at"]
+		child :households do
+		    attributes *Households.column_names
 	
-			child :interview, :object_root => false do
-    		attributes *Interview.column_names - ["consumed_foods", "created_at", "updated_at"], :object_root => false
+			child :interview do
+    		    attributes *Interview.column_names
     		
-        		child :consumed_foods, :object_root => false do
-           		 attributes *ConsumedFood.column_names - ["created_at", "updated_at"], :object_root => false
-				 
+        		child :consumed_foods do
+           		    attributes *ConsumedFood.column_names
 				 end
 			end
 			
-			child :people, :object_root => false do
-			attributes *Person.column_names - ["created_at", "updated_at"]
+			child :people do
+			    attributes *Person.column_names
 			
-				child :jobs, :object_root => false do
-				attributes *Job.column_names
-				
+				child :jobs do
+				    attributes *Job.column_names
 				end
-			
 			end
-			
         end
-	
-    end	
-    	
+    end
 end
-
-
-    
-
-
-    
-    

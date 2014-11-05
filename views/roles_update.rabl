@@ -1,7 +1,2 @@
-collection @roles
-attributes *Role.column_names, :object_root => false 
-
-
-
-
-    
+object @roles_update
+attributes *Role.column_names

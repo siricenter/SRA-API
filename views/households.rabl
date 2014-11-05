@@ -1,20 +1,18 @@
-collection @households
-attributes :id, :name, :object_root => false
+object @households
+attributes *Household.column_names
 
-child :people, :object_root => false do
-    attributes :id, :given_name, :family_name
+child :people do
+    attributes *Person.column_names
 
-    child :jobs, :object_root => false do 
-        attributes :title
+    child :jobs do 
+        attributes *Job.column_names
     end
 end
 
 child :interview do
-	attributes :id
+	attributes *Interview.column_names
 	
 	child :consumed_foods do
-		attributes :n_id, :servings, :frequency
+		attributes *ConsumedFood.column_names
 	end
 end
-
-

@@ -1,21 +1,18 @@
 object @household
-attributes :id, :name, :created_at, :object_root => false
+attributes *Household.column_names
 
 child :people do
-    attributes :id, :given_name
+    attributes *Person.column_names
 
     child :jobs do 
-        attributes :title
+        attributes *Job.column_names
     end
 end
 
 child :interview do
-	attributes :id
+	attributes *Interview.column_names
 	
 	child :consumed_foods do
-		attributes :n_id, :servings, :frequency
+		attributes *ConsumedFood.column_names
 	end
 end
-
-
-

@@ -1,16 +1,16 @@
 object @person
-attributes :id, :given_name, :birthday, :education_level, :gender, :in_school, :is_alive
+attributes *Person.column_names
 
 child :jobs, :object_root => false do
-	attributes :title
+	attributes *Job.column_names
 end
 
 child :household, :object_root => false do
-	attributes :name
+	attributes *Household.column_names
 end
 
 child :family_relationship, :object_root => false do
-	attributes :id, :name
+	attributes *FamilyRelationship.column_names
 end
 	
 

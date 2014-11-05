@@ -13,7 +13,7 @@ describe 'Households' do
 			households = JSON.parse(json)
 			expect(households.first['household']['id']).to eq(household.id)
 			expect(households.first['household']['name']).to eq(household.name)
-			expect(households.first['household']['people'].first['given_name']).to eq(person.given_name)
+            expect(households.first['household']['people'].first['person']['given_name']).to eq(person.given_name)
 		end
 
 		it "creates a new household" do

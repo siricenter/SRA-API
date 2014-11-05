@@ -8,7 +8,7 @@ describe 'People' do
 			json = last_response.body
             people = JSON.parse(json)
             expect(people.first['person']['given_name']).to eq(person.given_name)
-            expect(people.first['person']['jobs'].first['title']).to eq(job.title)
+            expect(people.first['person']['jobs'].first['job']['title']).to eq(job.title)
 		end
 #Birthday can't be blank, Education level can't be blank, Family name can't be blank, Gender can't be blank, Given name can't be blank
 		it "creates a new person_js" do

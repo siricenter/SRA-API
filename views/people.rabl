@@ -1,12 +1,12 @@
 object @people
-attributes :id, :given_name, :updated_at, :created_at, :object_root => false
+attributes *Person.column_names
 
-child :jobs, :object_root => false do
-	attributes :title
+child :jobs do
+	attributes *Job.column_names
 end
 
-child :household, :object_root => false do
-	attributes :name
+child :household do
+	attributes *Household.column_names
 end
 
 
